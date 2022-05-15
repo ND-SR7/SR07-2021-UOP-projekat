@@ -12,7 +12,7 @@ public abstract class Zaposleni extends Osoba {
     /*KONSTRUKTORI*/
     public Zaposleni() {
     	super();
-    	this.id = 0;
+    	this.id = -1;
     	this.plata = 0.0;
     	this.korisnickoIme = "";
     	this.lozinka = "";
@@ -39,8 +39,8 @@ public abstract class Zaposleni extends Osoba {
 
     public static int postaviID()
     {
-        return idBrojac++;
-    }    
+        return ++idBrojac;
+    }
 
     /*METODE*/
 	public Clan dodajClana() {

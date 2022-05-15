@@ -1,6 +1,6 @@
 package biblioteka;
 
 public enum EnumPol {
-    Muško,
-    Žensko
+    Muško,	//0
+    Žensko	//1
 }

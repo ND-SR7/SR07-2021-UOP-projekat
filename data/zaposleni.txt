@@ -1,0 +1,2 @@
+1,A,Nikola,Nikolić,1508999700639,Preradovićeva 53,0,18000.00,nn15,nix639
+2,B,Marijana,Marić,0809000193200,Miše Dimitrijevića 1,1,18100.00,MaryM,m123m

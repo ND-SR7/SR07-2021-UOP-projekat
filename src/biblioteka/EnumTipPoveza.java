@@ -1,6 +1,6 @@
 package biblioteka;
 
 public enum EnumTipPoveza {
-    Mek,
-    Tvrd
+    Mek, //0
+    Tvrd //1
 }

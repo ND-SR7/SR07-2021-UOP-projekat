@@ -13,7 +13,7 @@ public class Knjiga {
 	
     /*KONSTRUKTORI*/
     public Knjiga() {
-    	this.id = 0;
+    	this.id = -1;
     	this.naslov = "";
     	this.originalniNaslov = "";
     	this.pisacImePrezime = "";
@@ -23,7 +23,7 @@ public class Knjiga {
     	this.jezikOriginala = null;
 	}
 
-	public Knjiga(int id, String naslov, String originalniNaslov, String pisacImePrezime, int godinaObjavljivanja, String opis, Zanr zanr, EnumJezik jezikOriginala) {
+	public Knjiga(String naslov, String originalniNaslov, String pisacImePrezime, int godinaObjavljivanja, String opis, Zanr zanr, EnumJezik jezikOriginala) {
 		this.id = postaviID();
 		this.naslov = naslov;
 		this.originalniNaslov = originalniNaslov;
@@ -39,6 +39,6 @@ public class Knjiga {
 
     public static int postaviID()
     {
-        return idBrojac++;
+        return ++idBrojac;
     }
 }

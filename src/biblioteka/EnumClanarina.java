@@ -1,7 +1,7 @@
 package biblioteka;
 
 public enum EnumClanarina {
-	Penzioner,
-	Dete,
-	Ostali
+	Penzioner, //0
+	Dete,      //1
+	Ostali     //2
 }

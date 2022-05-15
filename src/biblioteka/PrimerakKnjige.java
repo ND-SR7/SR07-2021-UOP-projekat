@@ -12,7 +12,7 @@ public class PrimerakKnjige {
     
     /*KONSTRUKTORI*/
     public PrimerakKnjige() {
-    	this.id = 0;
+    	this.id = -1;
     	this.brojStrana = 0;
     	this.tipPoveza = null;
     	this.godinaStampanja = 0;
@@ -21,8 +21,8 @@ public class PrimerakKnjige {
     	this.jezikStampanja = null;
     }
     
-    public PrimerakKnjige(int id, int brojStrana, EnumTipPoveza tipPoveza, int godinaStampanja, boolean iznajmljen, Knjiga knjiga, EnumJezik jezikStampanja) {
-		this.id = id;
+    public PrimerakKnjige(int brojStrana, EnumTipPoveza tipPoveza, int godinaStampanja, boolean iznajmljen, Knjiga knjiga, EnumJezik jezikStampanja) {
+		this.id = postaviID();
 		this.brojStrana = brojStrana;
 		this.tipPoveza = tipPoveza;
 		this.godinaStampanja = godinaStampanja;
@@ -36,7 +36,7 @@ public class PrimerakKnjige {
 
     public static int postaviID()
     {
-        return idBrojac++;
+        return ++idBrojac;
     }
 
 }

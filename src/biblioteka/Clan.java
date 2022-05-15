@@ -14,7 +14,7 @@ public class Clan extends Osoba {
     /*KONSTRUKTORI*/
     public Clan() {
     	super();
-    	this.id = 0;
+    	this.id = -1;
     	this.datumPoslednjeUplate = null;
     	this.brMeseciClanarine = 0;
     	this.aktivan = false;
@@ -47,7 +47,7 @@ public class Clan extends Osoba {
 
     public static int postaviID()
     {
-        return idBrojac++;
+        return ++idBrojac;
     } 
     
     /*GENERATOR BROJA ČLANSKE KARTE*/

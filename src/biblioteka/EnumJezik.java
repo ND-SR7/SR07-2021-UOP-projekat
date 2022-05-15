@@ -1,9 +1,9 @@
 package biblioteka;
 
 public enum EnumJezik {
-    Srpski,
-    Engleski,
-    Nemački,
-    Francuski,
-    Ruski
+    Srpski,		//0
+    Engleski,	//1
+    Nemački,	//2
+    Francuski,	//3
+    Ruski		//4
 }
