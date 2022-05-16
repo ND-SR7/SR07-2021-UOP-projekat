@@ -30,6 +30,12 @@ public class PrimerakKnjige {
 		this.knjiga = knjiga;
 		this.jezikStampanja = jezikStampanja;
 	}
+    
+    /*toString()*/
+    @Override
+    public String toString() {
+    	return "Primerak knjige: " + this.knjiga;
+    }
 
 	/*GENERATOR JEDINSTVENIH ID-a*/
     private static int idBrojac = 0;

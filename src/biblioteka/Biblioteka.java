@@ -38,6 +38,12 @@ public class Biblioteka {
     	this.radnoVreme = biblioteka.radnoVreme;
     }
     
+    /*toString()*/
+    @Override
+    public String toString() {
+    	return "Biblioteka: " + this.naziv;
+    }
+    
     /*PODACI IZ FAJLOVA*/
     protected ArrayList<Clan> sviClanovi = ucitajSveClanove();
     protected HashMap<String, Zanr> sviZanrovi = ucitajSveZanrove();

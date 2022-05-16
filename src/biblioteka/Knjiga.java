@@ -33,6 +33,12 @@ public class Knjiga {
 		this.zanr = zanr;
 		this.jezikOriginala = jezikOriginala;
 	}
+	
+	/*toString()*/
+    @Override
+    public String toString() {
+    	return "Knjiga: " + this.naslov;
+    }
     
 	/*GENERATOR JEDINSTVENIH ID-a*/
     private static int idBrojac = 0;

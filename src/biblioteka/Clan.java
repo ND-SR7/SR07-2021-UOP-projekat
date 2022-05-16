@@ -41,6 +41,12 @@ public class Clan extends Osoba {
 		this.aktivan = clan.aktivan;
 		this.tipClanarine = clan.tipClanarine;
     }
+    
+    /*toString()*/
+    @Override
+    public String toString() {
+    	return "Član: " + this.ime + " " + this.prezime;
+    }
 
 	/*GENERATOR JEDINSTVENIH ID-a*/
     private static int idBrojac = 0;

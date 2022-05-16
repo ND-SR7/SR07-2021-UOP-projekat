@@ -14,4 +14,10 @@ public class Bibliotekar extends Zaposleni {
     public Bibliotekar(Bibliotekar bibliotekar) {
     	super(bibliotekar);
     }
+    
+    /*toString()*/
+    @Override
+    public String toString() {
+    	return "Bibliotekar: " + this.korisnickoIme;
+    }
 }

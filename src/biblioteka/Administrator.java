@@ -14,6 +14,12 @@ public class Administrator extends Zaposleni {
     public Administrator(Administrator administrator) {
     	super(administrator);
     }
+    
+    /*toString()*/
+    @Override
+    public String toString() {
+    	return "Administrator: " + this.korisnickoIme;
+    }
 
     /*METODE*/
     

@@ -20,8 +20,8 @@ public class Main {
 		Clan clan1 = admin.dodajClana("Pera", "Peric", "1010001100011", "Perina 13, NS", EnumPol.Muško, LocalDate.now(), 2, true, EnumClanarina.Ostali);
 		Clan clan2 = bibliotekar.dodajClana("Ivan", "Ivanovic", "2009005100011", "Perina 13, NS", EnumPol.Muško, LocalDate.now(), 2, true, EnumClanarina.Ostali);
 		
-		System.out.println(clan1.brClanskeKarte);
-		System.out.println(clan2.brClanskeKarte);
+		System.out.println(clan1 + ", sa članskom kartom: " + clan1.brClanskeKarte);
+		System.out.println(clan2 + ", sa članskom kartom: " + clan2.brClanskeKarte);
 	}
 	
 	public static Biblioteka ucitajBiblioteku() {
