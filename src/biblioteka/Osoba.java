@@ -32,4 +32,45 @@ public abstract class Osoba {
 		this.adresa =osoba.adresa;
 		this.pol = osoba.pol;
 	}
+
+	/*GET SET*/
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+
+	public String getJMBG() {
+		return JMBG;
+	}
+
+	public void setJMBG(String jMBG) {
+		JMBG = jMBG;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+	public EnumPol getPol() {
+		return pol;
+	}
+
+	public void setPol(EnumPol pol) {
+		this.pol = pol;
+	}
 }

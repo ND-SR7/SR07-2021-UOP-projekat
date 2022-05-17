@@ -1,7 +1,7 @@
 package biblioteka;
 
 public class Administrator extends Zaposleni {
-
+	
     /*KONSTRUKTORI*/
     public Administrator() {
     	super();
@@ -13,6 +13,11 @@ public class Administrator extends Zaposleni {
     
     public Administrator(Administrator administrator) {
     	super(administrator);
+    }
+    
+    /*GET*/
+    public String getUloga() {
+    	return "A";
     }
     
     /*toString()*/

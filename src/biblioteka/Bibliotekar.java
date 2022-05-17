@@ -1,7 +1,7 @@
 package biblioteka;
 
 public class Bibliotekar extends Zaposleni {
-
+	
 	/*KONSTRUKTORI*/
     public Bibliotekar() {
     	super();
@@ -13,6 +13,11 @@ public class Bibliotekar extends Zaposleni {
     
     public Bibliotekar(Bibliotekar bibliotekar) {
     	super(bibliotekar);
+    }
+    
+    /*GET*/
+    public String getUloga() {
+    	return "B";
     }
     
     /*toString()*/

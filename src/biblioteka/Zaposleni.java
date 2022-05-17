@@ -34,7 +34,38 @@ public abstract class Zaposleni extends Osoba {
 		this.lozinka = zaposleni.lozinka;
     }
     
-    /*GENERATOR JEDINSTVENIH ID-a*/
+    /*GET SET*/
+    public double getPlata() {
+		return plata;
+	}
+
+	public void setPlata(double plata) {
+		this.plata = plata;
+	}
+
+	public String getKorisnickoIme() {
+		return korisnickoIme;
+	}
+
+	public void setKorisnickoIme(String korisnickoIme) {
+		this.korisnickoIme = korisnickoIme;
+	}
+
+	public String getLozinka() {
+		return lozinka;
+	}
+
+	public void setLozinka(String lozinka) {
+		this.lozinka = lozinka;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public abstract String getUloga();
+
+	/*GENERATOR JEDINSTVENIH ID-a*/
     private static int idBrojac = 0;
 
     public static int postaviID()

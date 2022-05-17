@@ -34,6 +34,67 @@ public class Knjiga {
 		this.jezikOriginala = jezikOriginala;
 	}
 	
+	/*GET SET*/
+	public int getId() {
+		return id;
+	}
+
+	public String getNaslov() {
+		return naslov;
+	}
+
+	public void setNaslov(String naslov) {
+		this.naslov = naslov;
+	}
+
+	public String getOriginalniNaslov() {
+		return originalniNaslov;
+	}
+
+	public void setOriginalniNaslov(String originalniNaslov) {
+		this.originalniNaslov = originalniNaslov;
+	}
+
+	public String getPisacImePrezime() {
+		return pisacImePrezime;
+	}
+
+	public void setPisacImePrezime(String pisacImePrezime) {
+		this.pisacImePrezime = pisacImePrezime;
+	}
+
+	public int getGodinaObjavljivanja() {
+		return godinaObjavljivanja;
+	}
+
+	public void setGodinaObjavljivanja(int godinaObjavljivanja) {
+		this.godinaObjavljivanja = godinaObjavljivanja;
+	}
+
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
+
+	public Zanr getZanr() {
+		return zanr;
+	}
+
+	public void setZanr(Zanr zanr) {
+		this.zanr = zanr;
+	}
+
+	public EnumJezik getJezikOriginala() {
+		return jezikOriginala;
+	}
+
+	public void setJezikOriginala(EnumJezik jezikOriginala) {
+		this.jezikOriginala = jezikOriginala;
+	}
+
 	/*toString()*/
     @Override
     public String toString() {

@@ -31,10 +31,63 @@ public class PrimerakKnjige {
 		this.jezikStampanja = jezikStampanja;
 	}
     
-    /*toString()*/
+    /*GET SET*/
+    public int getId() {
+		return id;
+	}
+
+	public int getBrojStrana() {
+		return brojStrana;
+	}
+
+	public void setBrojStrana(int brojStrana) {
+		this.brojStrana = brojStrana;
+	}
+
+	public EnumTipPoveza getTipPoveza() {
+		return tipPoveza;
+	}
+
+	public void setTipPoveza(EnumTipPoveza tipPoveza) {
+		this.tipPoveza = tipPoveza;
+	}
+
+	public int getGodinaStampanja() {
+		return godinaStampanja;
+	}
+
+	public void setGodinaStampanja(int godinaStampanja) {
+		this.godinaStampanja = godinaStampanja;
+	}
+
+	public boolean isIznajmljen() {
+		return iznajmljen;
+	}
+
+	public void setIznajmljen(boolean iznajmljen) {
+		this.iznajmljen = iznajmljen;
+	}
+
+	public Knjiga getKnjiga() {
+		return knjiga;
+	}
+
+	public void setKnjiga(Knjiga knjiga) {
+		this.knjiga = knjiga;
+	}
+
+	public EnumJezik getJezikStampanja() {
+		return jezikStampanja;
+	}
+
+	public void setJezikStampanja(EnumJezik jezikStampanja) {
+		this.jezikStampanja = jezikStampanja;
+	}
+
+	/*toString()*/
     @Override
     public String toString() {
-    	return "Primerak knjige: " + this.knjiga;
+    	return "Primerak knjige: " + this.knjiga.getNaslov();
     }
 
 	/*GENERATOR JEDINSTVENIH ID-a*/

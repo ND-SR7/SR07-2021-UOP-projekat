@@ -42,7 +42,48 @@ public class Clan extends Osoba {
 		this.tipClanarine = clan.tipClanarine;
     }
     
-    /*toString()*/
+    /*GET SET*/
+    public int getId() {
+		return id;
+	}
+
+	public String getBrClanskeKarte() {
+		return brClanskeKarte;
+	}
+
+	public LocalDate getDatumPoslednjeUplate() {
+		return datumPoslednjeUplate;
+	}
+
+	public void setDatumPoslednjeUplate(LocalDate datumPoslednjeUplate) {
+		this.datumPoslednjeUplate = datumPoslednjeUplate;
+	}
+
+	public int getBrMeseciClanarine() {
+		return brMeseciClanarine;
+	}
+
+	public void setBrMeseciClanarine(int brMeseciClanarine) {
+		this.brMeseciClanarine = brMeseciClanarine;
+	}
+
+	public boolean isAktivan() {
+		return aktivan;
+	}
+
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
+
+	public EnumClanarina getTipClanarine() {
+		return tipClanarine;
+	}
+
+	public void setTipClanarine(EnumClanarina tipClanarine) {
+		this.tipClanarine = tipClanarine;
+	}
+
+	/*toString()*/
     @Override
     public String toString() {
     	return "Član: " + this.ime + " " + this.prezime;

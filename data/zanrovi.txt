@@ -1,4 +1,4 @@
 P,Programiranje i koncepti vezani za kompjuterske nauke
-F,Filozofija i biografije poznatih filozofa
 D,Drame i originalna dela pozorišnih izvedbi
+F,Filozofija i biografije poznatih filozofa
 K,Komedije i dela sa opuštenom tematikom
