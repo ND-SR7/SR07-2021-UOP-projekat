@@ -1,4 +1,4 @@
-package biblioteka;
+package biblioteka.model;
 
 import java.time.LocalDate;
 
@@ -25,6 +25,12 @@ public class IznajmljivanjeKnjige {
 		this.iznajmljenPrimerak = iznajmljenPrimerak;
 		this.clan = clan;
 		this.zaposleni = zaposleni;
+	}
+	
+	/*toString()*/
+	@Override
+	public String toString() {
+		return this.iznajmljenPrimerak + ", sa ID: " + this.iznajmljenPrimerak.getId() + ", je iznajmljen: " + this.datumIznajmljivanja;
 	}
 	
 	/*GET SET*/

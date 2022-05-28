@@ -1,4 +1,4 @@
-package biblioteka;
+package biblioteka.model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,16 +13,18 @@ public class BibliotekaMain {
 	public static void main(String args[]) {
 		Biblioteka biblioteka = ucitajBiblioteku();
 		
-		Zaposleni noviZaposleni = new Administrator("Pera", "Perić", "1205975601230", "Prelepog Mišketa 1a", EnumPol.Muško, 12560.0, "perica", "pp1a");
-		biblioteka.getSviZaposleni().add(noviZaposleni);
+//		System.out.println(biblioteka.sveIznajmljivanje.get(0) + "\n");
 		
-		Clan clan2 = biblioteka.getSviClanovi().get(1);
-		if(!clan2.isAktivan())
-			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
-						", nije aktivan\n");
-		else
-			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
-					", je aktivan\n");
+//		Zaposleni noviZaposleni = new Administrator("Pera", "Perić", "1205975601230", "Prelepog Mišketa 1a", EnumPol.Muško, 12560.0, "perica", "pp1a");
+//		biblioteka.getSviZaposleni().add(noviZaposleni);
+//		
+//		Clan clan2 = biblioteka.getSviClanovi().get(1);
+//		if(!clan2.isAktivan())
+//			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
+//						", nije aktivan\n");
+//		else
+//			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
+//					", je aktivan\n");
 		
 		ispis(biblioteka);
 		
@@ -32,6 +34,7 @@ public class BibliotekaMain {
 		biblioteka.upisiSvePrimerke();
 		biblioteka.upisiSveZanrove();
 		biblioteka.upisiSveZaposlene();
+		biblioteka.upisiSveIznajmljivanje();
 	}
 	
 	public static Biblioteka ucitajBiblioteku() {

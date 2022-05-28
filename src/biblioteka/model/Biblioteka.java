@@ -1,4 +1,4 @@
-package biblioteka;
+package biblioteka.model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -85,6 +85,7 @@ public class Biblioteka {
     protected ArrayList<Knjiga> sveKnjige = ucitajSveKnjige();
     protected ArrayList<PrimerakKnjige> sviPrimerciKnjiga = ucitajSvePrimerke();
     protected ArrayList<Zaposleni> sviZaposleni = ucitajSveZaposlene();
+    protected ArrayList<IznajmljivanjeKnjige> sveIznajmljivanje = ucitajSveIznajmljivanje();
     
     /*GET*/
     public ArrayList<Clan> getSviClanovi() {
@@ -252,6 +253,35 @@ public class Biblioteka {
 		return sviZaposleni;
 	}
 	
+	//SVE IZNAJMLJIVANJE
+	private ArrayList<IznajmljivanjeKnjige> ucitajSveIznajmljivanje(){
+		File fajl = new File("data/iznajmljivanje-log.txt");
+		ArrayList<IznajmljivanjeKnjige> sveIznajmljivanje = new ArrayList<IznajmljivanjeKnjige>();
+		
+		try {
+			BufferedReader citac = new BufferedReader(new FileReader(fajl));
+			
+			String linija;
+			
+			while((linija = citac.readLine()) != null) {
+				String[] temp = linija.split(",");
+				IznajmljivanjeKnjige iznajmljivanje = new IznajmljivanjeKnjige(LocalDate.parse(temp[0]), LocalDate.parse(temp[1]),
+						sviPrimerciKnjiga.get(Integer.parseInt(temp[2]) - 1), sviClanovi.get(Integer.parseInt(temp[3]) - 1),
+						sviZaposleni.get(Integer.parseInt(temp[4]) - 1));
+				
+				sveIznajmljivanje.add(iznajmljivanje);
+			}
+			citac.close();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Fajl " + fajl.toString() + " nije pronađen!");
+		} catch (IOException e) {
+			System.out.println("Greška kod I/O!");
+		}
+
+		return sveIznajmljivanje;
+	}
+	
 	/*FAJLOVI PISANJE*/
 	//BIBLIOTEKA
 	public void upisiBiblioteku() {
@@ -348,6 +378,23 @@ public class Biblioteka {
 			pisac.close();
 		} catch (IOException e) {
 			System.out.println("Greška prilikom pisanja u zaposleni.txt");
+		}
+	}
+	
+	//IZNAJMLJIVANJE
+	public void upisiSveIznajmljivanje() {
+		try {
+			File fajl = new File("data/iznajmljivanje-log.txt");
+			BufferedWriter pisac = new BufferedWriter(new FileWriter(fajl));
+			
+			for(IznajmljivanjeKnjige iznajmljivanje: sveIznajmljivanje) 
+				pisac.write(iznajmljivanje.getDatumIznajmljivanja().toString() + "," + iznajmljivanje.getDatumVracanja().toString() + "," + 
+						Integer.toString(iznajmljivanje.getIznajmljenPrimerak().getId()) + "," + Integer.toString(iznajmljivanje.getClan().getId()) + "," + 
+						Integer.toString(iznajmljivanje.getZaposleni().getId()));
+				
+			pisac.close();
+		} catch (IOException e) {
+			System.out.println("Greška prilikom pisanja u iznajmljivanje-log.txt");
 		}
 	}
 }

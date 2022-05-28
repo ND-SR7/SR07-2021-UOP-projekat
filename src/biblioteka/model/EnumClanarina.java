@@ -1,4 +1,4 @@
-package biblioteka;
+package biblioteka.model;
 
 public enum EnumClanarina {
 	Penzioner, //0
