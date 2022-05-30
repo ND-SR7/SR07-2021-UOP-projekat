@@ -9,6 +9,7 @@ public class PrimerakKnjige {
     protected boolean iznajmljen;
     protected Knjiga knjiga;
     protected EnumJezik jezikStampanja;
+    protected boolean obrisan;
     
     /*KONSTRUKTORI*/
     public PrimerakKnjige() {
@@ -19,9 +20,10 @@ public class PrimerakKnjige {
     	this.iznajmljen = false;
     	this.knjiga = null;
     	this.jezikStampanja = null;
+    	this.obrisan = false;
     }
     
-    public PrimerakKnjige(int brojStrana, EnumTipPoveza tipPoveza, int godinaStampanja, boolean iznajmljen, Knjiga knjiga, EnumJezik jezikStampanja) {
+    public PrimerakKnjige(int brojStrana, EnumTipPoveza tipPoveza, int godinaStampanja, boolean iznajmljen, Knjiga knjiga, EnumJezik jezikStampanja, boolean obrisan) {
 		this.id = postaviID();
 		this.brojStrana = brojStrana;
 		this.tipPoveza = tipPoveza;
@@ -29,6 +31,7 @@ public class PrimerakKnjige {
 		this.iznajmljen = iznajmljen;
 		this.knjiga = knjiga;
 		this.jezikStampanja = jezikStampanja;
+		this.obrisan = obrisan;
 	}
     
     /*GET SET*/
@@ -82,6 +85,14 @@ public class PrimerakKnjige {
 
 	public void setJezikStampanja(EnumJezik jezikStampanja) {
 		this.jezikStampanja = jezikStampanja;
+	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	/*toString()*/

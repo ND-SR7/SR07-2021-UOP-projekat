@@ -4,16 +4,19 @@ public class Zanr {
 
     protected String oznaka;
     protected String opis;
+    protected boolean obrisan;
     
     /*KONSTRUKTORI*/
     public Zanr() {
     	this.oznaka = "";
     	this.opis = "";
+    	this.obrisan = false;
     }
 
-	public Zanr(String oznaka, String opis) {
+	public Zanr(String oznaka, String opis, boolean obrisan) {
 		this.oznaka = oznaka;
 		this.opis = opis;
+		this.obrisan = obrisan;
 	}
 	
 	/*toString()*/
@@ -37,5 +40,13 @@ public class Zanr {
 
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 }

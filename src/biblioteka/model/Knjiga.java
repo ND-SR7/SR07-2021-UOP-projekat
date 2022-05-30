@@ -10,6 +10,7 @@ public class Knjiga {
     protected String opis;
     protected Zanr zanr;
     protected EnumJezik jezikOriginala;
+    protected boolean obrisana;
 	
     /*KONSTRUKTORI*/
     public Knjiga() {
@@ -21,9 +22,11 @@ public class Knjiga {
     	this.opis = "";
     	this.zanr = null;
     	this.jezikOriginala = null;
+    	this.obrisana = false;
 	}
 
-	public Knjiga(String naslov, String originalniNaslov, String pisacImePrezime, int godinaObjavljivanja, String opis, Zanr zanr, EnumJezik jezikOriginala) {
+	public Knjiga(String naslov, String originalniNaslov, String pisacImePrezime, int godinaObjavljivanja, String opis, Zanr zanr, EnumJezik jezikOriginala, 
+				boolean obrisana) {
 		this.id = postaviID();
 		this.naslov = naslov;
 		this.originalniNaslov = originalniNaslov;
@@ -32,6 +35,7 @@ public class Knjiga {
 		this.opis = opis;
 		this.zanr = zanr;
 		this.jezikOriginala = jezikOriginala;
+		this.obrisana = obrisana;
 	}
 	
 	/*GET SET*/
@@ -93,6 +97,14 @@ public class Knjiga {
 
 	public void setJezikOriginala(EnumJezik jezikOriginala) {
 		this.jezikOriginala = jezikOriginala;
+	}
+	
+	public boolean isObrisana() {
+		return obrisana;
+	}
+	
+	public void setObrisan(boolean obrisana) {
+		this.obrisana = obrisana;
 	}
 
 	/*toString()*/

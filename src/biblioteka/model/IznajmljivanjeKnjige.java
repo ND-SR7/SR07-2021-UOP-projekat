@@ -9,6 +9,7 @@ public class IznajmljivanjeKnjige {
     protected PrimerakKnjige iznajmljenPrimerak;
     protected Clan clan;
     protected Zaposleni zaposleni;
+    protected boolean obrisano;
     
     /*KONSTRUKTORI*/
     public IznajmljivanjeKnjige() {
@@ -17,14 +18,17 @@ public class IznajmljivanjeKnjige {
     	this.iznajmljenPrimerak = null;
     	this.clan = null;
     	this.zaposleni = null;
+    	this.obrisano = false;
     }
 
-	public IznajmljivanjeKnjige(LocalDate datumIznajmljivanja, LocalDate datumVracanja, PrimerakKnjige iznajmljenPrimerak, Clan clan, Zaposleni zaposleni) {
+	public IznajmljivanjeKnjige(LocalDate datumIznajmljivanja, LocalDate datumVracanja, PrimerakKnjige iznajmljenPrimerak, Clan clan, Zaposleni zaposleni,
+								boolean obrisano) {
 		this.datumIznajmljivanja = datumIznajmljivanja;
 		this.datumVracanja = datumVracanja;
 		this.iznajmljenPrimerak = iznajmljenPrimerak;
 		this.clan = clan;
 		this.zaposleni = zaposleni;
+		this.obrisano = obrisano;
 	}
 	
 	/*toString()*/
@@ -72,5 +76,13 @@ public class IznajmljivanjeKnjige {
 
 	public void setZaposleni(Zaposleni zaposleni) {
 		this.zaposleni = zaposleni;
+	}
+	
+	public boolean isObrisano() {
+		return obrisano;
+	}
+	
+	public void setObrisan(boolean obrisano) {
+		this.obrisano = obrisano;
 	}
 }

@@ -7,8 +7,8 @@ public class Administrator extends Zaposleni {
     	super();
     }
     
-    public Administrator(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka) {
-    	super(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka);
+    public Administrator(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka, boolean obrisan) {
+    	super(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka, obrisan);
     }
     
     public Administrator(Administrator administrator) {
@@ -26,7 +26,8 @@ public class Administrator extends Zaposleni {
     	return "Administrator: " + this.korisnickoIme;
     }
 
-    /*METODE*/
+    /*CRUD*/
+    //CREATE
     
     //NOVI BIBLIOTEKAR
     public Zaposleni dodajBibliotekara() {
@@ -36,7 +37,7 @@ public class Administrator extends Zaposleni {
     }
     
     public Zaposleni dodajBibliotekara(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka) {
-        Zaposleni noviZaposleni = new Bibliotekar(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka);
+        Zaposleni noviZaposleni = new Bibliotekar(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka, false);
     	
     	return noviZaposleni;
     }
@@ -55,7 +56,7 @@ public class Administrator extends Zaposleni {
     }
     
     public Zaposleni dodajAdministratora(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka) {
-        Zaposleni noviZaposleni = new Administrator(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka);
+        Zaposleni noviZaposleni = new Administrator(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka, false);
     	
     	return noviZaposleni;
     }

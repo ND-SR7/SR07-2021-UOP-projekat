@@ -7,8 +7,8 @@ public class Bibliotekar extends Zaposleni {
     	super();
     }
     
-    public Bibliotekar(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka) {
-    	super(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka);
+    public Bibliotekar(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka, boolean obrisan) {
+    	super(ime, prezime, JMBG, adresa, pol, plata, korisnickoIme, lozinka, obrisan);
     }
     
     public Bibliotekar(Bibliotekar bibliotekar) {

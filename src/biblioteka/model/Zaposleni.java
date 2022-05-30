@@ -8,6 +8,7 @@ public abstract class Zaposleni extends Osoba {
     protected double plata;
     protected String korisnickoIme;
     protected String lozinka;
+    protected boolean obrisan;
     
     /*KONSTRUKTORI*/
     public Zaposleni() {
@@ -16,14 +17,16 @@ public abstract class Zaposleni extends Osoba {
     	this.plata = 0.0;
     	this.korisnickoIme = "";
     	this.lozinka = "";
+    	this.obrisan = false;
     }
 
-    public Zaposleni(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka) {
+    public Zaposleni(String ime, String prezime, String JMBG, String adresa, EnumPol pol, double plata, String korisnickoIme, String lozinka, boolean obrisan) {
 		super(ime, prezime, JMBG, adresa, pol);
 		this.id = postaviID();
 		this.plata = plata;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
+		this.obrisan = obrisan;
 	}
 
     public Zaposleni(Zaposleni zaposleni) {
@@ -32,6 +35,7 @@ public abstract class Zaposleni extends Osoba {
     	this.plata = zaposleni.plata;
 		this.korisnickoIme = zaposleni.korisnickoIme;
 		this.lozinka = zaposleni.lozinka;
+		this.obrisan = zaposleni.obrisan;
     }
     
     /*GET SET*/
@@ -62,6 +66,14 @@ public abstract class Zaposleni extends Osoba {
 	public int getId() {
 		return id;
 	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	public abstract String getUloga();
 
@@ -73,7 +85,10 @@ public abstract class Zaposleni extends Osoba {
         return ++idBrojac;
     }
 
-    /*METODE*/
+    /*CRUD*/
+    //CREATE
+    
+    //ČLAN
 	public Clan dodajClana() {
         Clan noviClan = new Clan();
 		
@@ -82,7 +97,7 @@ public abstract class Zaposleni extends Osoba {
 	
 	public Clan dodajClana(String ime, String prezime, String JMBG, String adresa, EnumPol pol, LocalDate datumPoslednjeUplate, int brMeseciClanarine, 
     		boolean aktivan, EnumClanarina tipClanarine) {
-        Clan noviClan = new Clan(ime, prezime, JMBG, adresa, pol, datumPoslednjeUplate, brMeseciClanarine, aktivan, tipClanarine);
+        Clan noviClan = new Clan(ime, prezime, JMBG, adresa, pol, datumPoslednjeUplate, brMeseciClanarine, aktivan, tipClanarine, false);
 		
 		return noviClan;
     }
@@ -92,4 +107,11 @@ public abstract class Zaposleni extends Osoba {
 		
 		return noviClan;
     }
+	
+	//DELETE
+	
+	//ČLAN
+	public void obrisiClana(Clan clan) {
+		clan.setObrisan(true);
+	}
 }

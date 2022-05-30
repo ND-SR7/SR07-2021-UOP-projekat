@@ -10,6 +10,7 @@ public class Clan extends Osoba {
     protected int brMeseciClanarine;
     protected boolean aktivan;
     protected EnumClanarina tipClanarine;
+    protected boolean obrisan;
 
     /*KONSTRUKTORI*/
     public Clan() {
@@ -19,10 +20,11 @@ public class Clan extends Osoba {
     	this.brMeseciClanarine = 0;
     	this.aktivan = false;
     	this.tipClanarine = null;
+    	this.obrisan = false;
     }
     
     public Clan(String ime, String prezime, String JMBG, String adresa, EnumPol pol, LocalDate datumPoslednjeUplate, int brMeseciClanarine, 
-    		boolean aktivan, EnumClanarina tipClanarine) {
+    		boolean aktivan, EnumClanarina tipClanarine, boolean obrisan) {
 		super(ime, prezime,JMBG, adresa, pol);
 		this.id = postaviID();
 		this.brClanskeKarte = postaviCK(ime, JMBG);
@@ -30,6 +32,7 @@ public class Clan extends Osoba {
 		this.brMeseciClanarine = brMeseciClanarine;
 		this.aktivan = aktivan;
 		this.tipClanarine = tipClanarine;
+		this.obrisan = obrisan;
 	}
     
     public Clan(Clan clan) {
@@ -40,6 +43,7 @@ public class Clan extends Osoba {
 		this.brMeseciClanarine = clan.brMeseciClanarine;
 		this.aktivan = clan.aktivan;
 		this.tipClanarine = clan.tipClanarine;
+		this.obrisan = clan.obrisan;
     }
     
     /*GET SET*/
@@ -81,6 +85,14 @@ public class Clan extends Osoba {
 
 	public void setTipClanarine(EnumClanarina tipClanarine) {
 		this.tipClanarine = tipClanarine;
+	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	/*toString()*/

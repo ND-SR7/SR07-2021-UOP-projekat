@@ -122,7 +122,7 @@ public class Biblioteka {
 			while((linija = citac.readLine()) != null) {
 				String[] temp = linija.split(",");
 				Clan clan = new Clan(temp[1], temp[2], temp[3], temp[4], EnumPol.values()[Integer.parseInt(temp[5])], LocalDate.parse(temp[6]), 
-						Integer.parseInt(temp[7]), Boolean.valueOf(temp[8]), EnumClanarina.values()[Integer.parseInt(temp[9])]);
+						Integer.parseInt(temp[7]), Boolean.valueOf(temp[8]), EnumClanarina.values()[Integer.parseInt(temp[9])], Boolean.valueOf(temp[10]));
 				sviClanovi.add(clan);
 			}
 			citac.close();
@@ -148,7 +148,7 @@ public class Biblioteka {
 			
 			while((linija = citac.readLine()) != null) {
 				String[] temp = linija.split(",");
-				Zanr zanr = new Zanr(temp[0], temp[1]);
+				Zanr zanr = new Zanr(temp[0], temp[1], Boolean.valueOf(temp[2]));
 				sviZanrovi.put(temp[0], zanr);
 			}
 			citac.close();
@@ -174,7 +174,8 @@ public class Biblioteka {
 			
 			while((linija = citac.readLine()) != null) {
 				String[] temp = linija.split(",");
-				Knjiga knjiga = new Knjiga(temp[1], temp[2], temp[3], Integer.parseInt(temp[4]), temp[5], sviZanrovi.get(temp[6]), EnumJezik.values()[Integer.parseInt(temp[7])]);
+				Knjiga knjiga = new Knjiga(temp[1], temp[2], temp[3], Integer.parseInt(temp[4]), temp[5], sviZanrovi.get(temp[6]), EnumJezik.values()[Integer.parseInt(temp[7])], 
+										Boolean.valueOf(temp[8]));
 				sveKnjige.add(knjiga);
 			}
 			citac.close();
@@ -202,7 +203,7 @@ public class Biblioteka {
 				String[] temp = linija.split(",");
 				PrimerakKnjige primerak = new PrimerakKnjige(Integer.parseInt(temp[1]), EnumTipPoveza.values()[Integer.parseInt(temp[2])], 
 						Integer.parseInt(temp[3]), Boolean.valueOf(temp[4]), sveKnjige.get(Integer.parseInt(temp[5]) - 1), 
-						EnumJezik.values()[Integer.parseInt(temp[6])]);
+						EnumJezik.values()[Integer.parseInt(temp[6])], Boolean.valueOf(temp[7]));
 				sviPrimerci.add(primerak);
 			}
 			citac.close();
@@ -232,11 +233,11 @@ public class Biblioteka {
 				switch(temp[1]) {
 				case "A":
 					zaposleni = new Administrator(temp[2], temp[3], temp[4], temp[5], EnumPol.values()[Integer.parseInt(temp[6])], 
-							Double.parseDouble(temp[7]), temp[8], temp[9]);
+							Double.parseDouble(temp[7]), temp[8], temp[9], Boolean.valueOf(temp[10]));
 					break;
 				case "B":
 					zaposleni = new Bibliotekar(temp[2], temp[3], temp[4], temp[5], EnumPol.values()[Integer.parseInt(temp[6])], 
-							Double.parseDouble(temp[7]), temp[8], temp[9]);
+							Double.parseDouble(temp[7]), temp[8], temp[9], Boolean.valueOf(temp[10]));
 					break;
 				}
 				
@@ -267,7 +268,7 @@ public class Biblioteka {
 				String[] temp = linija.split(",");
 				IznajmljivanjeKnjige iznajmljivanje = new IznajmljivanjeKnjige(LocalDate.parse(temp[0]), LocalDate.parse(temp[1]),
 						sviPrimerciKnjiga.get(Integer.parseInt(temp[2]) - 1), sviClanovi.get(Integer.parseInt(temp[3]) - 1),
-						sviZaposleni.get(Integer.parseInt(temp[4]) - 1));
+						sviZaposleni.get(Integer.parseInt(temp[4]) - 1), Boolean.valueOf(temp[5]));
 				
 				sveIznajmljivanje.add(iznajmljivanje);
 			}
@@ -306,7 +307,7 @@ public class Biblioteka {
 				pisac.write(Integer.toString(clan.getId()) + "," + clan.getIme() + "," + clan.getPrezime() + "," + clan.getJMBG() + "," + 
 						clan.getAdresa() + "," + Integer.toString(clan.getPol().ordinal()) + "," + clan.getDatumPoslednjeUplate().toString() + "," + 
 						Integer.toString(clan.getBrMeseciClanarine()) + "," + Boolean.toString(clan.isAktivan()) + "," + Integer.toString(clan.getTipClanarine().ordinal()) 
-						+ "\n");
+						+ "," + Boolean.toString(clan.isObrisan()) + "\n");
 			
 			pisac.close();
 		} catch (IOException e) {
@@ -323,7 +324,7 @@ public class Biblioteka {
 			for(Knjiga knjiga: sveKnjige)
 				pisac.write(Integer.toString(knjiga.getId()) + "," + knjiga.getNaslov() + "," + knjiga.getOriginalniNaslov() + "," + knjiga.getPisacImePrezime() + ","
 						+ Integer.toString(knjiga.getGodinaObjavljivanja()) + "," + knjiga.getOpis() + "," + knjiga.getZanr().getOznaka() + "," + 
-						Integer.toString(knjiga.getJezikOriginala().ordinal()) + "\n");
+						Integer.toString(knjiga.getJezikOriginala().ordinal()) + "," + Boolean.toString(knjiga.isObrisana()) + "\n");
 			
 			pisac.close();
 		} catch (IOException e) {
@@ -341,7 +342,7 @@ public class Biblioteka {
 				pisac.write(Integer.toString(primerak.getId()) + "," + Integer.toString(primerak.getBrojStrana()) + "," + 
 						Integer.toString(primerak.getTipPoveza().ordinal()) + "," + Integer.toString(primerak.getGodinaStampanja()) + "," + 
 						Boolean.toString(primerak.isIznajmljen()) + "," + Integer.toString(primerak.getKnjiga().getId()) + "," + 
-						Integer.toString(primerak.getJezikStampanja().ordinal()) + "\n");
+						Integer.toString(primerak.getJezikStampanja().ordinal()) + "," + Boolean.toString(primerak.isObrisan()) + "\n");
 			
 			pisac.close();
 		} catch (IOException e) {
@@ -356,7 +357,7 @@ public class Biblioteka {
 			BufferedWriter pisac = new BufferedWriter(new FileWriter(fajl));
 			
 			for(HashMap.Entry<String, Zanr> set: sviZanrovi.entrySet())
-				pisac.write(set.getKey() + "," + set.getValue().toString() + "\n");
+				pisac.write(set.getKey() + "," + set.getValue().toString() + "," + Boolean.toString(set.getValue().isObrisan()) + "\n");
 			
 			pisac.close();
 		} catch (IOException e) {
@@ -373,7 +374,8 @@ public class Biblioteka {
 			for(Zaposleni zaposleni: sviZaposleni) 
 				pisac.write(Integer.toString(zaposleni.getId()) + "," + zaposleni.getUloga() + "," + zaposleni.getIme() + "," + zaposleni.getPrezime() + "," 
 						+ zaposleni.getJMBG() + "," + zaposleni.getAdresa() + "," + Integer.toString(zaposleni.getPol().ordinal()) + "," + 
-						Double.toString(zaposleni.getPlata()) + "," + zaposleni.getKorisnickoIme() + "," + zaposleni.getLozinka() + "\n");
+						Double.toString(zaposleni.getPlata()) + "," + zaposleni.getKorisnickoIme() + "," + zaposleni.getLozinka() + "," +
+						Boolean.toString(zaposleni.isObrisan())+ "\n");
 				
 			pisac.close();
 		} catch (IOException e) {
@@ -390,7 +392,7 @@ public class Biblioteka {
 			for(IznajmljivanjeKnjige iznajmljivanje: sveIznajmljivanje) 
 				pisac.write(iznajmljivanje.getDatumIznajmljivanja().toString() + "," + iznajmljivanje.getDatumVracanja().toString() + "," + 
 						Integer.toString(iznajmljivanje.getIznajmljenPrimerak().getId()) + "," + Integer.toString(iznajmljivanje.getClan().getId()) + "," + 
-						Integer.toString(iznajmljivanje.getZaposleni().getId()));
+						Integer.toString(iznajmljivanje.getZaposleni().getId()) + "," + Boolean.toString(iznajmljivanje.isObrisano()));
 				
 			pisac.close();
 		} catch (IOException e) {
