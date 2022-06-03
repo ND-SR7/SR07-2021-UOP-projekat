@@ -85,8 +85,8 @@ public abstract class Zaposleni extends Osoba {
         return ++idBrojac;
     }
 
-    /*CRUD*/
-    //CREATE
+    /**CRUD**/
+    /*CREATE*/
     
     //ČLAN
 	public Clan dodajClana() {
@@ -108,10 +108,84 @@ public abstract class Zaposleni extends Osoba {
 		return noviClan;
     }
 	
-	//DELETE
+	//IZNAJMLJIVANJE
+	public IznajmljivanjeKnjige dodajIznajmljivanje() {
+		IznajmljivanjeKnjige novoIznajmljivanje = new IznajmljivanjeKnjige();
+		
+		return novoIznajmljivanje;
+	}
+	
+	public IznajmljivanjeKnjige dodajIznajmljivanje(LocalDate datumIznajmljivanja, LocalDate datumVracanja, PrimerakKnjige iznajmljenPrimerak, Clan clan, Zaposleni zaposleni,
+												boolean obrisano) {
+		IznajmljivanjeKnjige novoIznajmljivanje = new IznajmljivanjeKnjige(datumIznajmljivanja, datumVracanja, iznajmljenPrimerak, clan, zaposleni, obrisano);
+		
+		return novoIznajmljivanje;
+	}
+	
+	//KNJIGA
+	public Knjiga dodajKnjigu() {
+		Knjiga novaKnjiga = new Knjiga();
+		
+		return novaKnjiga;
+	}
+	
+	public Knjiga dodajKnjigu(String naslov, String originalniNaslov, String pisacImePrezime, int godinaObjavljivanja, String opis, Zanr zanr, EnumJezik jezikOriginala, 
+							boolean obrisana) {
+		Knjiga novaKnjiga = new Knjiga(naslov, originalniNaslov, pisacImePrezime, godinaObjavljivanja, opis, zanr, jezikOriginala, obrisana);
+		
+		return novaKnjiga;
+	}
+	
+	//PRIMERAK KNJIGE
+	public PrimerakKnjige dodajPrimerak() {
+		PrimerakKnjige noviPrimerak = new PrimerakKnjige();
+		
+		return noviPrimerak;
+	}
+	
+	public PrimerakKnjige dodajPrimerak(int brojStrana, EnumTipPoveza tipPoveza, int godinaStampanja, boolean iznajmljen, Knjiga knjiga, EnumJezik jezikStampanja, boolean obrisan) {
+		PrimerakKnjige noviPrimerak = new PrimerakKnjige(brojStrana, tipPoveza, godinaStampanja, iznajmljen, knjiga, jezikStampanja, obrisan);
+		
+		return noviPrimerak;
+	}
+	
+	//ŽANR
+	public Zanr dodajZanr() {
+		Zanr noviZanr = new Zanr();
+		
+		return noviZanr;
+	}
+	
+	public Zanr dodajZanr(String oznaka, String opis, boolean obrisan) {
+		Zanr noviZanr = new Zanr(oznaka, opis, obrisan);
+		
+		return noviZanr;
+	}
+	
+	/*DELETE*/
 	
 	//ČLAN
 	public void obrisiClana(Clan clan) {
 		clan.setObrisan(true);
+	}
+	
+	//IZNAJMLJIVANJE
+	public void obrisiIznajmljivanje(IznajmljivanjeKnjige iznajmljivanje) {
+		iznajmljivanje.setObrisano(true);
+	}
+	
+	//KNJIGA
+	public void obrisiKnjigu(Knjiga knjiga) {
+		knjiga.setObrisana(true);
+	}
+	
+	//PRIMERAK KNJIGE
+	public void obrisiPrimerak(PrimerakKnjige primerak) {
+		primerak.setObrisan(true);
+	}
+	
+	//ŽANR
+	public void obrisiZanr(Zanr zanr) {
+		zanr.setObrisan(true);
 	}
 }

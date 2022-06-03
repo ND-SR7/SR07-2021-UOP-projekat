@@ -26,10 +26,10 @@ public class Administrator extends Zaposleni {
     	return "Administrator: " + this.korisnickoIme;
     }
 
-    /*CRUD*/
-    //CREATE
+    /**CRUD**/
+    /*CREATE*/
     
-    //NOVI BIBLIOTEKAR
+    //BIBLIOTEKAR
     public Zaposleni dodajBibliotekara() {
         Zaposleni noviZaposleni = new Bibliotekar();
     	
@@ -48,7 +48,7 @@ public class Administrator extends Zaposleni {
     	return noviZaposleni;
     }
     
-    //NOVI ADMINISTRATOR
+    //ADMINISTRATOR
     public Zaposleni dodajAdministratora() {
         Zaposleni noviZaposleni = new Administrator();
     	
@@ -65,5 +65,12 @@ public class Administrator extends Zaposleni {
         Zaposleni noviZaposleni = new Administrator(administrator);
     	
     	return noviZaposleni;
+    }
+    
+    /*DELETE*/
+    
+    //ADMINISTRATOR i BIBLIOTEKAR
+    public void obrisiZaposlenog(Zaposleni zaposleni) {
+    	zaposleni.setObrisan(true);
     }
 }

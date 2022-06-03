@@ -82,7 +82,7 @@ public class IznajmljivanjeKnjige {
 		return obrisano;
 	}
 	
-	public void setObrisan(boolean obrisano) {
+	public void setObrisano(boolean obrisano) {
 		this.obrisano = obrisano;
 	}
 }

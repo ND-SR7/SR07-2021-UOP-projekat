@@ -103,7 +103,7 @@ public class Knjiga {
 		return obrisana;
 	}
 	
-	public void setObrisan(boolean obrisana) {
+	public void setObrisana(boolean obrisana) {
 		this.obrisana = obrisana;
 	}
 
