@@ -1,4 +1,4 @@
-package biblioteka.model;
+package biblioteka.main;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,25 +8,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import biblioteka.gui.LoginFrame;
+import biblioteka.model.Biblioteka;
+import biblioteka.model.Clan;
+import biblioteka.model.Knjiga;
+import biblioteka.model.PrimerakKnjige;
+import biblioteka.model.Zanr;
+import biblioteka.model.Zaposleni;
+
 public class BibliotekaMain {
 	
 	public static void main(String args[]) {
 		Biblioteka biblioteka = ucitajBiblioteku();
+		LoginFrame login = new LoginFrame(biblioteka);
 		
-//		System.out.println(biblioteka.sveIznajmljivanje.get(0) + "\n");
+		login.setVisible(true);
 		
-//		Zaposleni noviZaposleni = new Administrator("Pera", "Perić", "1205975601230", "Prelepog Mišketa 1a", EnumPol.Muško, 12560.0, "perica", "pp1a");
-//		biblioteka.getSviZaposleni().add(noviZaposleni);
-//		
-//		Clan clan2 = biblioteka.getSviClanovi().get(1);
-//		if(!clan2.isAktivan())
-//			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
-//						", nije aktivan\n");
-//		else
-//			System.out.println("Član "  + clan2.getIme() + " " + clan2.getPrezime() + ", sa članskom kartom " + clan2.getBrClanskeKarte() + 
-//					", je aktivan\n");
-		
-		ispis(biblioteka);
+//		ispis(biblioteka);
 		
 		biblioteka.upisiBiblioteku();
 		biblioteka.upisiSveClanove();

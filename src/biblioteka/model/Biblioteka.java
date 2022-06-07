@@ -399,4 +399,13 @@ public class Biblioteka {
 			System.out.println("Greška prilikom pisanja u iznajmljivanje-log.txt");
 		}
 	}
+
+	/*VALIDACIJA*/
+	public boolean proveriLogin(String korisnickoIme, String lozinka) {
+		for(Zaposleni zaposleni: sviZaposleni) {
+			if(zaposleni.getKorisnickoIme().equals(korisnickoIme) && zaposleni.getLozinka().equals(lozinka))
+				return true;
+		}	
+		return false;
+	}
 }
