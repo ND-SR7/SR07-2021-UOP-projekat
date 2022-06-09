@@ -17,6 +17,7 @@ import java.awt.Button;
 import javax.swing.border.TitledBorder;
 
 import biblioteka.model.Biblioteka;
+import biblioteka.model.Zaposleni;
 
 public class LoginFrame extends JFrame {
 
@@ -29,12 +30,12 @@ public class LoginFrame extends JFrame {
 
 	
 	public LoginFrame(Biblioteka biblioteka) {
-		setTitle("Login");
+		setTitle("Prijava");
 		setName("LoginFrame");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/bi.png"));
 		setFont(new Font("Courier New", Font.PLAIN, 14));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 300, 200);
+		setBounds(500, 250, 300, 200);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Courier New", Font.BOLD, 11));
@@ -77,10 +78,10 @@ public class LoginFrame extends JFrame {
 		buttonLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean prijava = biblioteka.proveriLogin(textFieldKorisnickoIme.getText(), new String(passwordFieldLozinka.getPassword()));
-				if(prijava) {
+				Zaposleni zaposleni = biblioteka.proveriLogin(textFieldKorisnickoIme.getText(), new String(passwordFieldLozinka.getPassword()));
+				if(zaposleni != null) {
 					JOptionPane.showMessageDialog(null, "Uspešno ste se prijavili na sistem.");
-					MainFrame main = new MainFrame();
+					MainFrame main = new MainFrame(zaposleni);
 					dispose();
 					main.setVisible(true);
 				}

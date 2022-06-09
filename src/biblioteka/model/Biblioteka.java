@@ -401,11 +401,11 @@ public class Biblioteka {
 	}
 
 	/*VALIDACIJA*/
-	public boolean proveriLogin(String korisnickoIme, String lozinka) {
+	public Zaposleni proveriLogin(String korisnickoIme, String lozinka) {
 		for(Zaposleni zaposleni: sviZaposleni) {
 			if(zaposleni.getKorisnickoIme().equals(korisnickoIme) && zaposleni.getLozinka().equals(lozinka))
-				return true;
+				return zaposleni;
 		}	
-		return false;
+		return null;
 	}
 }
