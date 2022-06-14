@@ -80,11 +80,13 @@ public class LoginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Zaposleni zaposleni = biblioteka.proveriLogin(textFieldKorisnickoIme.getText(), new String(passwordFieldLozinka.getPassword()));
 				if(zaposleni != null) {
-					JOptionPane.showMessageDialog(null, "Uspešno ste se prijavili na sistem.");
-					MainFrame main = new MainFrame(zaposleni);
+					JOptionPane.showMessageDialog(null, "Uspešno ste se prijavili na sistem.", "Uspešna prijava", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame main = new MainFrame(biblioteka, zaposleni);
 					dispose();
 					main.setVisible(true);
 				}
+				else
+					JOptionPane.showMessageDialog(null, "Prijava na sistem nije uspela.", "Greška", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		contentPane.add(buttonLogin, "cell 5 5,alignx left,aligny bottom");
