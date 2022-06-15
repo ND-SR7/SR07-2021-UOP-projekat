@@ -11,7 +11,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -38,7 +37,7 @@ public class MainFrame extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu BibliotekaMenu = new JMenu("Biblioteka");
-		BibliotekaMenu.setFont(new Font("Courier New", Font.PLAIN, 12));
+		BibliotekaMenu.setFont(new Font("Courier New", Font.BOLD, 14));
 		menuBar.add(BibliotekaMenu);
 		
 		JMenuItem InformacijeMenuItem = new JMenuItem("Informacije");
@@ -46,13 +45,19 @@ public class MainFrame extends JFrame {
 		InformacijeMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					
+					InformacijeDialog info = new InformacijeDialog(biblioteka);
+					info.setModal(true);
+					info.setVisible(true);
 			}
 		});
 		BibliotekaMenu.add(InformacijeMenuItem);
 		
+		JMenuItem IzmenaMenuItem = new JMenuItem("Izmena");
+		IzmenaMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		BibliotekaMenu.add(IzmenaMenuItem);
+		
 		JMenu PregledMenu = new JMenu("Pregled");
-		PregledMenu.setFont(new Font("Courier New", Font.PLAIN, 12));
+		PregledMenu.setFont(new Font("Courier New", Font.BOLD, 14));
 		menuBar.add(PregledMenu);
 		
 		JMenuItem ClanoviMenuItem = new JMenuItem("Članova");
@@ -86,7 +91,7 @@ public class MainFrame extends JFrame {
 		PregledMenu.add(IznajmljivanjaMenuItem);
 		
 		JMenu DodavanjeMenu = new JMenu("Dodavanje");
-		DodavanjeMenu.setFont(new Font("Courier New", Font.PLAIN, 12));
+		DodavanjeMenu.setFont(new Font("Courier New", Font.BOLD, 14));
 		menuBar.add(DodavanjeMenu);
 		
 		JMenuItem ClanoviAddMenuItem = new JMenuItem("Člana");
