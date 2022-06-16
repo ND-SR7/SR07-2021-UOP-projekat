@@ -54,6 +54,14 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem IzmenaMenuItem = new JMenuItem("Izmena");
 		IzmenaMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		IzmenaMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				IzmenaDialog izmena = new IzmenaDialog(biblioteka);
+				izmena.setModal(true);
+				izmena.setVisible(true);
+			}
+		});
 		BibliotekaMenu.add(IzmenaMenuItem);
 		
 		JMenu PregledMenu = new JMenu("Pregled");

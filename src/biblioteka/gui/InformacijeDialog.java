@@ -18,7 +18,7 @@ public class InformacijeDialog extends JDialog {
 
 	public InformacijeDialog(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/i.png"));
-		setBounds(300, 300, 540, 360);
+		setBounds(400, 400, 540, 360);
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

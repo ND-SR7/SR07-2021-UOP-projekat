@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Biblioteka {
 	
@@ -401,11 +403,36 @@ public class Biblioteka {
 	}
 
 	/*VALIDACIJA*/
+	//LOGIN
 	public Zaposleni proveriLogin(String korisnickoIme, String lozinka) {
 		for(Zaposleni zaposleni: sviZaposleni) {
 			if(zaposleni.getKorisnickoIme().equals(korisnickoIme) && zaposleni.getLozinka().equals(lozinka))
 				return zaposleni;
 		}	
 		return null;
+	}
+	
+	//IZMENA BIBLIOTEKE
+	public boolean proveriIzmenu(String naziv, String adresa, String brTelefon, String radnoVreme) {
+		Pattern nazivPattern = Pattern.compile("[\\w\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher nazivMatcher = nazivPattern.matcher(naziv);
+	    boolean nazivOK = nazivMatcher.find();
+	    
+	    Pattern adresaPattern = Pattern.compile("[\\w,\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher adresaMatcher = adresaPattern.matcher(adresa);
+	    boolean adresaOK = adresaMatcher.find();
+	    
+	    Pattern brTelefonPattern = Pattern.compile("[0-9\\-\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher brTelefonMatcher = brTelefonPattern.matcher(brTelefon);
+	    boolean brTelefonOK = brTelefonMatcher.find();
+	    
+	    Pattern radnoVremePattern = Pattern.compile("[\\w-\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher radnoVremeMatcher = radnoVremePattern.matcher(radnoVreme);
+	    boolean radnoVremeOK = radnoVremeMatcher.find();
+	    
+	    if(nazivOK && adresaOK && brTelefonOK && radnoVremeOK)
+	    	return true;
+		
+		return false;
 	}
 }
