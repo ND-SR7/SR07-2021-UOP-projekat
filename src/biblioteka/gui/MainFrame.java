@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import biblioteka.gui.showEdit.PrikazClanaFrame;
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Zaposleni;
 import java.awt.Font;
@@ -30,7 +31,8 @@ public class MainFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/bi.png"));
 		setFont(new Font("Courier New", Font.PLAIN, 14));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 250, 1000, 620);
+		setSize(1000, 620);
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Courier New", Font.PLAIN, 12));
@@ -70,6 +72,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem ClanoviMenuItem = new JMenuItem("Članova");
 		ClanoviMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ClanoviMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazClanaFrame clanFrame = new PrikazClanaFrame(biblioteka, biblioteka.getSviClanovi());
+				clanFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(ClanoviMenuItem);
 		
 		JMenuItem ZaposleniMenuItem = new JMenuItem("Zaposlenih");

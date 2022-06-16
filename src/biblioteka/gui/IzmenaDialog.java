@@ -30,7 +30,8 @@ public class IzmenaDialog extends JDialog {
 
 	public IzmenaDialog(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/e.png"));
-		setBounds(400, 400, 540, 360);
+		setSize(540, 360);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -43,7 +44,7 @@ public class IzmenaDialog extends JDialog {
 		{
 			NazivTextField = new JTextField(biblioteka.getNaziv());
 			NazivTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
-			contentPanel.add(NazivTextField, "cell 7 2,alignx left");
+			contentPanel.add(NazivTextField, "cell 7 2,growx");
 			NazivTextField.setColumns(15);
 		}
 		{
@@ -55,7 +56,7 @@ public class IzmenaDialog extends JDialog {
 			AdresaTextField = new JTextField(biblioteka.getAdresa());
 			AdresaTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			AdresaTextField.setColumns(15);
-			contentPanel.add(AdresaTextField, "cell 7 3,alignx left");
+			contentPanel.add(AdresaTextField, "cell 7 3,growx");
 		}
 		{
 			JLabel TelefonLabel = new JLabel("Broj telefona:");
@@ -66,7 +67,7 @@ public class IzmenaDialog extends JDialog {
 			BrTelefonTextField = new JTextField(biblioteka.getBrTelefon());
 			BrTelefonTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			BrTelefonTextField.setColumns(15);
-			contentPanel.add(BrTelefonTextField, "cell 7 4,alignx left");
+			contentPanel.add(BrTelefonTextField, "cell 7 4,growx");
 		}
 		{
 			JLabel VremeLabel = new JLabel("Radno vreme:");
@@ -77,7 +78,7 @@ public class IzmenaDialog extends JDialog {
 			RadnoVremeTextField = new JTextField(biblioteka.getRadnoVreme());
 			RadnoVremeTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			RadnoVremeTextField.setColumns(15);
-			contentPanel.add(RadnoVremeTextField, "cell 7 5,alignx left");
+			contentPanel.add(RadnoVremeTextField, "cell 7 5,growx");
 		}
 		{
 			JPanel buttonPane = new JPanel();

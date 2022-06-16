@@ -435,4 +435,32 @@ public class Biblioteka {
 		
 		return false;
 	}
+	
+	//IZMENA ČLANA
+	public boolean proveriClana(String ime, String prezime, String JMBG, String adresa, EnumPol pol, LocalDate datumPoslednjeUplate, int brMeseciClanarine,
+								boolean aktivan, EnumClanarina tipClanarine) {
+		
+		Pattern imePrezimePattern = Pattern.compile("[\\w\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher imeMatcher = imePrezimePattern.matcher(ime);
+	    Matcher prezimeMatcher = imePrezimePattern.matcher(prezime);
+	    boolean imeOK = imeMatcher.find();
+	    boolean prezimeOK = prezimeMatcher.find();
+	    
+	    Pattern jmbgPattern = Pattern.compile("[0-9]{13}");
+	    Matcher jmbgMatcher = jmbgPattern.matcher(JMBG);
+	    boolean jmbgOK = jmbgMatcher.find();
+	    
+	    Pattern adresaPattern = Pattern.compile("[\\w,\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher adresaMatcher = adresaPattern.matcher(adresa);
+	    boolean adresaOK = adresaMatcher.find();
+	    
+	    boolean clanarinaOK = true;
+	    if(brMeseciClanarine < 0)
+	    	clanarinaOK = false;
+	    
+	    if(imeOK && prezimeOK && jmbgOK && adresaOK && clanarinaOK)
+	    	return true;
+	    
+		return false;
+	}
 }

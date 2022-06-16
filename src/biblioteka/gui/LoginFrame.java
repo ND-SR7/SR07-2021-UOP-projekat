@@ -35,7 +35,8 @@ public class LoginFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/bi.png"));
 		setFont(new Font("Courier New", Font.PLAIN, 14));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 250, 300, 200);
+		setSize(300, 200);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Courier New", Font.BOLD, 11));
