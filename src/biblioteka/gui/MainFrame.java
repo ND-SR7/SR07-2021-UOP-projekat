@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import biblioteka.gui.add.DodajClanaFrame;
 import biblioteka.gui.showEdit.PrikazClanaFrame;
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Zaposleni;
@@ -113,6 +114,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem ClanoviAddMenuItem = new JMenuItem("Člana");
 		ClanoviAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ClanoviAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					DodajClanaFrame dodaj = new DodajClanaFrame(biblioteka);
+					dodaj.setVisible(true);
+			}
+		});
 		DodavanjeMenu.add(ClanoviAddMenuItem);
 		
 		JMenuItem ZaposleniAddMenuItem = new JMenuItem("Zaposlenog");

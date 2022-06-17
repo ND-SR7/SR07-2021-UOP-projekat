@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.add;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,11 +26,10 @@ import javax.swing.JComboBox;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 
-public class IzmenaClanaFrame extends JFrame {
+public class DodajClanaFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField IdTextField;
 	private JLabel lblIme;
 	private JLabel lblPrezime;
 	private JTextField ImeTextField;
@@ -52,15 +51,13 @@ public class IzmenaClanaFrame extends JFrame {
 	private final ButtonGroup aktivanButtonGroup = new ButtonGroup();
 	private JLabel lblTipClanarine;
 	private JComboBox<Object> clanarinaComboBox;
-	private JLabel lblBrojClanskeKarte;
-	private JTextField BrClanskeKarteTextField;
 	private JPanel buttonPane;
 	private JButton sacuvajButton;
 	private JButton odustaniButton;
 	private JTextField DatumTextField;
 	private JLabel lblDatumFormat;
 
-	public IzmenaClanaFrame(Biblioteka biblioteka, Clan clan) {
+	public DodajClanaFrame(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/e.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(510, 510);
@@ -70,31 +67,11 @@ public class IzmenaClanaFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow][][grow][]", "[grow][][][][][][][][][][][][grow][grow]"));
 		
-		JLabel lblID = new JLabel("ID:");
-		lblID.setFont(new Font("Courier New", Font.BOLD, 14));
-		contentPane.add(lblID, "cell 1 1,alignx right");
-		
-		IdTextField = new JTextField(Integer.toString(clan.getId()));
-		IdTextField.setEditable(false);
-		IdTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
-		contentPane.add(IdTextField, "cell 2 1,alignx left");
-		IdTextField.setColumns(10);
-		
-		lblBrojClanskeKarte = new JLabel("Broj članske karte:");
-		lblBrojClanskeKarte.setFont(new Font("Courier New", Font.BOLD, 14));
-		contentPane.add(lblBrojClanskeKarte, "cell 1 2,alignx trailing");
-		
-		BrClanskeKarteTextField = new JTextField(clan.getBrClanskeKarte());
-		BrClanskeKarteTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
-		BrClanskeKarteTextField.setEditable(false);
-		BrClanskeKarteTextField.setColumns(10);
-		contentPane.add(BrClanskeKarteTextField, "cell 2 2,alignx left");
-		
 		lblIme = new JLabel("Ime:");
 		lblIme.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblIme, "cell 1 3,alignx right");
 		
-		ImeTextField = new JTextField(clan.getIme());
+		ImeTextField = new JTextField();
 		ImeTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		ImeTextField.setColumns(20);
 		contentPane.add(ImeTextField, "cell 2 3,alignx left");
@@ -103,7 +80,7 @@ public class IzmenaClanaFrame extends JFrame {
 		lblPrezime.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblPrezime, "cell 1 4,alignx right");
 		
-		PrezimeTextField = new JTextField(clan.getPrezime());
+		PrezimeTextField = new JTextField();
 		PrezimeTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		PrezimeTextField.setColumns(20);
 		contentPane.add(PrezimeTextField, "cell 2 4,alignx left");
@@ -112,7 +89,7 @@ public class IzmenaClanaFrame extends JFrame {
 		lblJmbg.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblJmbg, "cell 1 5,alignx right");
 		
-		JMBGTextField = new JTextField(clan.getJMBG());
+		JMBGTextField = new JTextField();
 		JMBGTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		JMBGTextField.setColumns(20);
 		contentPane.add(JMBGTextField, "cell 2 5,alignx left");
@@ -121,7 +98,7 @@ public class IzmenaClanaFrame extends JFrame {
 		lblAdresa.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblAdresa, "cell 1 6,alignx trailing");
 		
-		AdresaTextField = new JTextField(clan.getAdresa());
+		AdresaTextField = new JTextField();
 		AdresaTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		AdresaTextField.setColumns(20);
 		contentPane.add(AdresaTextField, "cell 2 6,alignx left");
@@ -139,17 +116,12 @@ public class IzmenaClanaFrame extends JFrame {
 		polButtonGroup.add(ZenskoRadioButton);
 		ZenskoRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(ZenskoRadioButton, "cell 2 7");
-		
-		if(clan.getPol() == EnumPol.Muško)
-			MuskoRadioButton.setSelected(true);
-		else if(clan.getPol() == EnumPol.Žensko)
-			ZenskoRadioButton.setSelected(true);
         
         lblDatum = new JLabel("Datum poslednje uplate:");
         lblDatum.setFont(new Font("Courier New", Font.BOLD, 14));
         contentPane.add(lblDatum, "cell 1 8,alignx trailing");
         
-        DatumTextField = new JTextField(clan.getDatumPoslednjeUplate().toString());
+        DatumTextField = new JTextField();
         DatumTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
         DatumTextField.setColumns(20);
         contentPane.add(DatumTextField, "flowx,cell 2 8,alignx left");
@@ -158,7 +130,7 @@ public class IzmenaClanaFrame extends JFrame {
         lblBrojMesecilanarine.setFont(new Font("Courier New", Font.BOLD, 14));
         contentPane.add(lblBrojMesecilanarine, "cell 1 9,alignx trailing");
         
-        brMeseciClanarineTextField = new JTextField(Integer.toString(clan.getBrMeseciClanarine()));
+        brMeseciClanarineTextField = new JTextField();
         brMeseciClanarineTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
         brMeseciClanarineTextField.setColumns(10);
         contentPane.add(brMeseciClanarineTextField, "cell 2 9,alignx left");
@@ -177,17 +149,11 @@ public class IzmenaClanaFrame extends JFrame {
         rdbtnNeaktivan.setFont(new Font("Courier New", Font.PLAIN, 12));
         contentPane.add(rdbtnNeaktivan, "cell 2 10");
         
-        if(clan.isAktivan())
-        	rdbtnAktivan.setSelected(true);
-        else
-        	rdbtnNeaktivan.setSelected(true);
-        
         lblTipClanarine = new JLabel("Tip članarine:");
         lblTipClanarine.setFont(new Font("Courier New", Font.BOLD, 14));
         contentPane.add(lblTipClanarine, "cell 1 11,alignx trailing");
         
         clanarinaComboBox = new JComboBox<Object>(EnumClanarina.values());
-        clanarinaComboBox.setSelectedItem(clan.getTipClanarine());
         contentPane.add(clanarinaComboBox, "cell 2 11,growx");
         
         buttonPane = new JPanel();
@@ -224,15 +190,10 @@ public class IzmenaClanaFrame extends JFrame {
 							Integer.parseInt(brMeseciClanarineTextField.getText()));
 					
 					if(izmenaOK) {
-						clan.setIme(ImeTextField.getText());
-						clan.setPrezime(PrezimeTextField.getText());
-						clan.setJMBG(JMBGTextField.getText());
-						clan.setAdresa(AdresaTextField.getText());
-						clan.setPol(pol);
-						clan.setDatumPoslednjeUplate(datum);
-						clan.setBrMeseciClanarine(Integer.parseInt(brMeseciClanarineTextField.getText()));
-						clan.setAktivan(aktivan);
-						clan.setTipClanarine(clanarina);
+						Clan clan = new Clan(ImeTextField.getText(), PrezimeTextField.getText(), JMBGTextField.getText(), AdresaTextField.getText(),
+								pol, datum, Integer.parseInt(brMeseciClanarineTextField.getText()), aktivan, clanarina, false);
+						
+						biblioteka.getSviClanovi().add(clan);
 						biblioteka.upisiSveClanove();
 					}
 					else {

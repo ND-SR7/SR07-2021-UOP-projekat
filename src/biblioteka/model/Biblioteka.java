@@ -437,8 +437,7 @@ public class Biblioteka {
 	}
 	
 	//IZMENA ČLANA
-	public boolean proveriClana(String ime, String prezime, String JMBG, String adresa, EnumPol pol, LocalDate datumPoslednjeUplate, int brMeseciClanarine,
-								boolean aktivan, EnumClanarina tipClanarine) {
+	public boolean proveriClana(String ime, String prezime, String JMBG, String adresa, int brMeseciClanarine) {
 		
 		Pattern imePrezimePattern = Pattern.compile("[\\w\\s]", Pattern.CASE_INSENSITIVE);
 	    Matcher imeMatcher = imePrezimePattern.matcher(ime);

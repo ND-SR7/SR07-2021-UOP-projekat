@@ -35,50 +35,50 @@ public class IzmenaDialog extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new MigLayout("", "[][][][][][][][grow]", "[][][][][][]"));
+		contentPanel.setLayout(new MigLayout("", "[grow][][grow]", "[][][][][][]"));
 		{
 			JLabel NazivLabel = new JLabel("Naziv:");
 			NazivLabel.setFont(new Font("Courier New", Font.BOLD, 18));
-			contentPanel.add(NazivLabel, "cell 6 2,alignx right");
+			contentPanel.add(NazivLabel, "cell 0 2,alignx right");
 		}
 		{
 			NazivTextField = new JTextField(biblioteka.getNaziv());
 			NazivTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
-			contentPanel.add(NazivTextField, "cell 7 2,growx");
+			contentPanel.add(NazivTextField, "cell 1 2,growx");
 			NazivTextField.setColumns(15);
 		}
 		{
 			JLabel AdresaLabel = new JLabel("Adresa:");
 			AdresaLabel.setFont(new Font("Courier New", Font.BOLD, 18));
-			contentPanel.add(AdresaLabel, "cell 6 3,alignx trailing");
+			contentPanel.add(AdresaLabel, "cell 0 3,alignx trailing");
 		}
 		{
 			AdresaTextField = new JTextField(biblioteka.getAdresa());
 			AdresaTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			AdresaTextField.setColumns(15);
-			contentPanel.add(AdresaTextField, "cell 7 3,growx");
+			contentPanel.add(AdresaTextField, "cell 1 3,growx");
 		}
 		{
 			JLabel TelefonLabel = new JLabel("Broj telefona:");
 			TelefonLabel.setFont(new Font("Courier New", Font.BOLD, 18));
-			contentPanel.add(TelefonLabel, "cell 6 4,alignx trailing");
+			contentPanel.add(TelefonLabel, "cell 0 4,alignx trailing");
 		}
 		{
 			BrTelefonTextField = new JTextField(biblioteka.getBrTelefon());
 			BrTelefonTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			BrTelefonTextField.setColumns(15);
-			contentPanel.add(BrTelefonTextField, "cell 7 4,growx");
+			contentPanel.add(BrTelefonTextField, "cell 1 4,growx");
 		}
 		{
 			JLabel VremeLabel = new JLabel("Radno vreme:");
 			VremeLabel.setFont(new Font("Courier New", Font.BOLD, 18));
-			contentPanel.add(VremeLabel, "cell 6 5,alignx trailing");
+			contentPanel.add(VremeLabel, "cell 0 5,alignx trailing");
 		}
 		{
 			RadnoVremeTextField = new JTextField(biblioteka.getRadnoVreme());
 			RadnoVremeTextField.setFont(new Font("Courier New", Font.PLAIN, 16));
 			RadnoVremeTextField.setColumns(15);
-			contentPanel.add(RadnoVremeTextField, "cell 7 5,growx");
+			contentPanel.add(RadnoVremeTextField, "cell 1 5,growx");
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -110,7 +110,7 @@ public class IzmenaDialog extends JDialog {
 							}
 						}
 					}
-				});;
+				});
 				buttonPane.add(sacuvajButton);
 				getRootPane().setDefaultButton(sacuvajButton);
 			}
