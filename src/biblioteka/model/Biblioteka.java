@@ -462,4 +462,39 @@ public class Biblioteka {
 	    
 		return false;
 	}
+	
+	//IZMENA ZAPOSLENOG
+	public boolean proveriZaposlenog(String ime, String prezime, String JMBG, String adresa, double plata, String korisnickoIme, String lozinka) {
+		
+		Pattern imePrezimePattern = Pattern.compile("[\\w\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher imeMatcher = imePrezimePattern.matcher(ime);
+	    Matcher prezimeMatcher = imePrezimePattern.matcher(prezime);
+	    boolean imeOK = imeMatcher.find();
+	    boolean prezimeOK = prezimeMatcher.find();
+	    
+	    Pattern jmbgPattern = Pattern.compile("[0-9]{13}");
+	    Matcher jmbgMatcher = jmbgPattern.matcher(JMBG);
+	    boolean jmbgOK = jmbgMatcher.find();
+	    
+	    Pattern adresaPattern = Pattern.compile("[\\w,\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher adresaMatcher = adresaPattern.matcher(adresa);
+	    boolean adresaOK = adresaMatcher.find();
+	    
+	    boolean plataOK = false;
+	    if(plata > 0.0)
+	    	plataOK = true;
+	    
+	    Pattern korisnickoImePattern = Pattern.compile("[\\w0-9]", Pattern.CASE_INSENSITIVE);
+	    Matcher korisnickoImeMatcher = korisnickoImePattern.matcher(korisnickoIme);
+	    boolean korisnickoImeOK = korisnickoImeMatcher.find();
+	    
+	    Pattern lozinkaPattern = Pattern.compile("[\\w0-9.?!#$]", Pattern.CASE_INSENSITIVE);
+	    Matcher lozinkaMatcher = lozinkaPattern.matcher(lozinka);
+	    boolean lozinkaOK = lozinkaMatcher.find();
+	    
+	    if(imeOK && prezimeOK && jmbgOK && adresaOK && plataOK && korisnickoImeOK && lozinkaOK)
+	    	return true;
+		
+		return false;
+	}
 }

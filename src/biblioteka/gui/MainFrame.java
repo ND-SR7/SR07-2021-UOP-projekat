@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import biblioteka.gui.add.DodajClanaFrame;
 import biblioteka.gui.showEdit.PrikazClanaFrame;
+import biblioteka.gui.showEdit.PrikazZaposlenogFrame;
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Zaposleni;
 import java.awt.Font;
@@ -84,6 +85,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem ZaposleniMenuItem = new JMenuItem("Zaposlenih");
 		ZaposleniMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ZaposleniMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazZaposlenogFrame zaposleniFrame = new PrikazZaposlenogFrame(biblioteka, biblioteka.getSviZaposleni());
+				zaposleniFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(ZaposleniMenuItem);
 		
 		JSeparator separator = new JSeparator();
