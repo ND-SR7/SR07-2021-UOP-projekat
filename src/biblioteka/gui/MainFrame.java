@@ -7,14 +7,23 @@ import javax.swing.border.EmptyBorder;
 
 import biblioteka.gui.add.DodajClanaFrame;
 import biblioteka.gui.add.DodajZaposlenogFrame;
-import biblioteka.gui.showEdit.PrikazClanaFrame;
-import biblioteka.gui.showEdit.PrikazZaposlenogFrame;
+import biblioteka.gui.show.PrikazClanaFrame;
+import biblioteka.gui.show.PrikazIznajmljivanjaFrame;
+import biblioteka.gui.show.PrikazKnjigeFrame;
+import biblioteka.gui.show.PrikazPrimerkaFrame;
+import biblioteka.gui.show.PrikazZanraFrame;
+import biblioteka.gui.show.PrikazZaposlenogFrame;
 import biblioteka.model.Biblioteka;
+import biblioteka.model.Zanr;
 import biblioteka.model.Zaposleni;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -106,14 +115,37 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem KnjigeMenuItem = new JMenuItem("Knjiga");
 		KnjigeMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		KnjigeMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazKnjigeFrame knjigaFrame = new PrikazKnjigeFrame(biblioteka, biblioteka.getSveKnjige());
+				knjigaFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(KnjigeMenuItem);
 		
 		JMenuItem PrimerciMenuItem = new JMenuItem("Primeraka knjiga");
 		PrimerciMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		PrimerciMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazPrimerkaFrame primerakFrame = new PrikazPrimerkaFrame(biblioteka, biblioteka.getSviPrimerciKnjiga());
+				primerakFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(PrimerciMenuItem);
 		
 		JMenuItem ZanroviMenuItem = new JMenuItem("Žanrova");
 		ZanroviMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ZanroviMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashMap<String, Zanr> hashMapa = biblioteka.getSviZanrovi();
+				ArrayList<Zanr> sviZanrovi = hashMapa.values().stream().collect(Collectors.toCollection(ArrayList::new));
+				PrikazZanraFrame zanrFrame = new PrikazZanraFrame(biblioteka, sviZanrovi);
+				zanrFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(ZanroviMenuItem);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -121,6 +153,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem IznajmljivanjaMenuItem = new JMenuItem("Iznajmljivanja");
 		IznajmljivanjaMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		IznajmljivanjaMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrikazIznajmljivanjaFrame iznajmljivanjeFrame = new PrikazIznajmljivanjaFrame(biblioteka, biblioteka.getSveIznajmljivanje());
+				iznajmljivanjeFrame.setVisible(true);
+			}
+		});
 		PregledMenu.add(IznajmljivanjaMenuItem);
 		
 		JMenu DodavanjeMenu = new JMenu("Dodavanje");

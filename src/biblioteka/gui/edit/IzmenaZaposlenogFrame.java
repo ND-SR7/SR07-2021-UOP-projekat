@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.edit;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

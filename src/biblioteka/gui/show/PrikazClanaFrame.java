@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.show;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import biblioteka.gui.UplataDialog;
+import biblioteka.gui.edit.IzmenaClanaFrame;
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Clan;
 import javax.swing.JButton;

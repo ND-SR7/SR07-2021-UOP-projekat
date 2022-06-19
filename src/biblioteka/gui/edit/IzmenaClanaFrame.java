@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.edit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

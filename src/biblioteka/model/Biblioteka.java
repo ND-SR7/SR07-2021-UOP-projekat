@@ -109,6 +109,10 @@ public class Biblioteka {
 	public ArrayList<Zaposleni> getSviZaposleni() {
 		return sviZaposleni;
 	}
+	
+	public ArrayList<IznajmljivanjeKnjige> getSveIznajmljivanje(){
+		return sveIznajmljivanje;
+	}
 
     /*FAJLOVI UČITAVANJE*/
     //SVI ČLANOVI

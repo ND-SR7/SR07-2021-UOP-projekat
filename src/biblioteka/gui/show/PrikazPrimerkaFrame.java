@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.show;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -17,49 +17,49 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import biblioteka.gui.edit.IzmenaPrimerkaFrame;
 import biblioteka.model.Biblioteka;
-import biblioteka.model.Zaposleni;
+import biblioteka.model.PrimerakKnjige;
 
-public class PrikazZaposlenogFrame extends JFrame {
+public class PrikazPrimerkaFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
-	public PrikazZaposlenogFrame(Biblioteka biblioteka, ArrayList<Zaposleni> sviZaposleni) {
+
+	public PrikazPrimerkaFrame(Biblioteka biblioteka, ArrayList<PrimerakKnjige> sviPrimerci) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/i.png"));
-		ArrayList<Zaposleni> sviNeobrisani = new ArrayList<Zaposleni>();
-		for(Zaposleni zaposleni: sviZaposleni) {
-			if(zaposleni.isObrisan())
+		ArrayList<PrimerakKnjige> sviNeobrisani = new ArrayList<PrimerakKnjige>();
+		for(PrimerakKnjige primerak: sviPrimerci) {
+			if(primerak.isObrisan())
 				continue;
 			else
-				sviNeobrisani.add(zaposleni);
+				sviNeobrisani.add(primerak);
 		}
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(650, 300);
 		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		String[] imeKolona = new String[] {"ID", "Korisničko ime", "Ime", "Prezime", "JMBG", "Adresa", "Pol", "Plata", "Uloga"};
+		String[] imeKolona = new String[] {"ID", "Broj strana", "Tip poveza", "Godina štampanja", "Iznajmljen", "Knjiga", "Jezik štampanja"};
 		Object[][] info = new Object[sviNeobrisani.size()][imeKolona.length];
 		
 		for(int i=0; i<sviNeobrisani.size(); i++) {
-			Zaposleni zaposleni = sviNeobrisani.get(i);
-			info[i][0] = zaposleni.getId();
-			info[i][1] = zaposleni.getKorisnickoIme();
-			info[i][2] = zaposleni.getIme();
-			info[i][3] = zaposleni.getPrezime();
-			info[i][4] = zaposleni.getJMBG();
-			info[i][5] = zaposleni.getAdresa();
-			info[i][6] = zaposleni.getPol();
-			info[i][7] = zaposleni.getPlata();
-			if(zaposleni.getUloga() == "A")
-				info[i][8] = "Administrator";
+			PrimerakKnjige primerak = sviNeobrisani.get(i);
+			info[i][0] = primerak.getId();
+			info[i][1] = primerak.getBrojStrana();
+			info[i][2] = primerak.getTipPoveza();
+			info[i][3] = primerak.getGodinaStampanja();
+			if(primerak.isIznajmljen())
+				info[i][4] = "Da";
 			else
-				info[i][8] = "Bibliotekar";
+				info[i][4] = "Ne";
+			info[i][5] = primerak.getKnjiga();
+			info[i][6] = primerak.getJezikStampanja();
 		}
 		
 		DefaultTableModel tableModel = new DefaultTableModel(info, imeKolona);
@@ -75,24 +75,24 @@ public class PrikazZaposlenogFrame extends JFrame {
 		scrollPane.setFont(new Font("Courier New", Font.PLAIN, 12));
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-JPanel buttonPane = new JPanel();
+		JPanel buttonPane = new JPanel();
 		
-		JButton IzmenaButton = new JButton("Izmena izabranog zaposlenog");
+		JButton IzmenaButton = new JButton("Izmena izabranog primerka");
 		IzmenaButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		IzmenaButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int red = tabela.getSelectedRow();
 				if(red == -1) {
-					JOptionPane.showMessageDialog(null, "Izaberite zaposlenog iz tabele za izmenu.", "Greška", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Izaberite primerak iz tabele za izmenu.", "Greška", JOptionPane.WARNING_MESSAGE);
 				}else {
-					Zaposleni izabraniZaposleni = null;
-					int zaposleniId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
-					for(Zaposleni zaposleni: sviNeobrisani) {
-						if(zaposleni.getId() == zaposleniId)
-							izabraniZaposleni = zaposleni;
+					PrimerakKnjige izabraniPrimerak = null;
+					int primerakId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					for(PrimerakKnjige primerak: sviNeobrisani) {
+						if(primerak.getId() == primerakId)
+							izabraniPrimerak = primerak;
 					}
-					IzmenaZaposlenogFrame izmena = new IzmenaZaposlenogFrame(biblioteka, izabraniZaposleni);
+					IzmenaPrimerkaFrame izmena = new IzmenaPrimerkaFrame(biblioteka, izabraniPrimerak);
 					izmena.setVisible(true);
 				}
 			}
@@ -100,31 +100,31 @@ JPanel buttonPane = new JPanel();
 		buttonPane.add(IzmenaButton);
 		contentPane.add(buttonPane, BorderLayout.SOUTH);
 		
-		JButton BrisanjeButton = new JButton("Brisanje izabranog zaposlenog");
+		JButton BrisanjeButton = new JButton("Brisanje izabranog primerka");
 		BrisanjeButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		BrisanjeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int red = tabela.getSelectedRow();
 				if(red == -1) {
-					JOptionPane.showMessageDialog(null, "Izaberite zaposlenog iz tabele za brisanje.", "Greška", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Izaberite primerak iz tabele za brisanje.", "Greška", JOptionPane.WARNING_MESSAGE);
 				}else {
-					Zaposleni izabraniZaposleni = null;
-					int zaposleniId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
-					for(Zaposleni zaposleni: sviNeobrisani) {
-						if(zaposleni.getId() == zaposleniId)
-							izabraniZaposleni = zaposleni;
+					PrimerakKnjige izabraniPrimerak = null;
+					int primerakId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					for(PrimerakKnjige primerak: sviNeobrisani) {
+						if(primerak.getId() == primerakId)
+							izabraniPrimerak = primerak;
 					}
 					String[] opcije = new String[2];
 					opcije[0] = "Da";
 					opcije[1] = "Ne";
 					
-					int obrisi = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete zaposlenog?", "Potvrda", 0, JOptionPane.INFORMATION_MESSAGE, null, opcije, null);
+					int obrisi = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete primerak?", "Potvrda", 0, JOptionPane.INFORMATION_MESSAGE, null, opcije, null);
 					
 					if(obrisi == 0) {
-						izabraniZaposleni.setObrisan(true);
-						biblioteka.upisiSveZaposlene();
-						JOptionPane.showMessageDialog(null, "Zaposleni uspešno obrisan.");
+						izabraniPrimerak.setObrisan(true);
+						biblioteka.upisiSvePrimerke();
+						JOptionPane.showMessageDialog(null, "Primerak uspešno obrisan.");
 					}
 				}
 			}
