@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import biblioteka.gui.add.DodajClanaFrame;
+import biblioteka.gui.add.DodajKnjiguFrame;
 import biblioteka.gui.add.DodajZaposlenogFrame;
 import biblioteka.gui.show.PrikazClanaFrame;
 import biblioteka.gui.show.PrikazIznajmljivanjaFrame;
@@ -197,6 +198,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem KnjigeAddMenuItem = new JMenuItem("Knjige");
 		KnjigeAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		KnjigeAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodajKnjiguFrame dodaj = new DodajKnjiguFrame(biblioteka);
+				dodaj.setVisible(true);
+			}
+		});
 		DodavanjeMenu.add(KnjigeAddMenuItem);
 		
 		JMenuItem PrimerciAddMenuItem = new JMenuItem("Primerka knjige");

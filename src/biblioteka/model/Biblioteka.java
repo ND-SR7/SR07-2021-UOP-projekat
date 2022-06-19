@@ -501,4 +501,30 @@ public class Biblioteka {
 		
 		return false;
 	}
+	
+	//IZMENA KNJIGE
+	public boolean proveriKnjigu(String naslov, String originalniNaslov, String pisac, String godinaObjavljivanja, String opis) {
+		Pattern naslovPattern = Pattern.compile("[\\w0-9\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher naslovMatcher = naslovPattern.matcher(naslov);
+	    Matcher originalniNaslovMatcher = naslovPattern.matcher(originalniNaslov);
+	    boolean naslovOK = naslovMatcher.find();
+	    boolean originalniNaslovOK = originalniNaslovMatcher.find();
+	    
+	    Pattern pisacPattern = Pattern.compile("[a-z\\s]", Pattern.CASE_INSENSITIVE);
+	    Matcher pisacMatcher = pisacPattern.matcher(pisac);
+	    boolean pisacOK = pisacMatcher.find();
+	    
+	    Pattern godinaPattern = Pattern.compile("[0-9]");
+	    Matcher godinaMatcher = godinaPattern.matcher(godinaObjavljivanja);
+	    boolean godinaOK = godinaMatcher.find();
+	    
+	    Pattern opisPattern = Pattern.compile("[\\w\\s0-9.,?!-/]", Pattern.CASE_INSENSITIVE);
+	    Matcher opisMatcher = opisPattern.matcher(opis);
+	    boolean opisOK = opisMatcher.find();
+	    
+	    if(naslovOK && originalniNaslovOK && pisacOK && godinaOK && opisOK)
+	    	return true;
+		
+		return false;
+	}
 }
