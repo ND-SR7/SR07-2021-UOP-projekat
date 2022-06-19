@@ -1,5 +1,6 @@
 package biblioteka.gui;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Font;
@@ -13,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 import javax.swing.JPasswordField;
-import java.awt.Button;
 import javax.swing.border.TitledBorder;
 
 import biblioteka.model.Biblioteka;
@@ -26,7 +26,7 @@ public class LoginFrame extends JFrame {
 	private JTextField textFieldKorisnickoIme;
 	private JLabel lblLozinka;
 	private JPasswordField passwordFieldLozinka;
-	private Button buttonLogin;
+	private JButton buttonLogin;
 
 	
 	public LoginFrame(Biblioteka biblioteka) {
@@ -73,7 +73,7 @@ public class LoginFrame extends JFrame {
 		passwordFieldLozinka.setBackground(Color.BLACK);
 		contentPane.add(passwordFieldLozinka, "cell 5 3,alignx left");
 		
-		buttonLogin = new Button("PRIJAVA");
+		buttonLogin = new JButton("PRIJAVA");
 		buttonLogin.setForeground(Color.BLACK);
 		buttonLogin.setFont(new Font("Courier New", Font.BOLD, 14));
 		buttonLogin.addActionListener(new ActionListener() {
@@ -91,6 +91,7 @@ public class LoginFrame extends JFrame {
 			}
 		});
 		contentPane.add(buttonLogin, "cell 5 5,alignx left,aligny bottom");
+		getRootPane().setDefaultButton(buttonLogin);
 	}
 
 }

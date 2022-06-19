@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import biblioteka.gui.add.DodajClanaFrame;
+import biblioteka.gui.add.DodajZaposlenogFrame;
 import biblioteka.gui.showEdit.PrikazClanaFrame;
 import biblioteka.gui.showEdit.PrikazZaposlenogFrame;
 import biblioteka.model.Biblioteka;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -88,8 +90,13 @@ public class MainFrame extends JFrame {
 		ZaposleniMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazZaposlenogFrame zaposleniFrame = new PrikazZaposlenogFrame(biblioteka, biblioteka.getSviZaposleni());
-				zaposleniFrame.setVisible(true);
+				if(zaposleni.getUloga().equals("A")) {
+					PrikazZaposlenogFrame zaposleniFrame = new PrikazZaposlenogFrame(biblioteka, biblioteka.getSviZaposleni());
+					zaposleniFrame.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nemate dozvolu za pristup zaposlenima.", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+				}
+				
 			}
 		});
 		PregledMenu.add(ZaposleniMenuItem);
@@ -133,6 +140,17 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem ZaposleniAddMenuItem = new JMenuItem("Zaposlenog");
 		ZaposleniAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ZaposleniAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(zaposleni.getUloga().equals("A")) {
+					DodajZaposlenogFrame dodaj = new DodajZaposlenogFrame(biblioteka);
+					dodaj.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nemate dozvolu za dodavanje zaposlenih.", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
 		DodavanjeMenu.add(ZaposleniAddMenuItem);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -156,6 +174,7 @@ public class MainFrame extends JFrame {
 		JMenuItem IznajmljivanjaAddMenuItem = new JMenuItem("Iznajmljivanja");
 		IznajmljivanjaAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
 		DodavanjeMenu.add(IznajmljivanjaAddMenuItem);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

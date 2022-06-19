@@ -1,4 +1,4 @@
-package biblioteka.gui.showEdit;
+package biblioteka.gui.add;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -18,16 +18,17 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import biblioteka.model.Administrator;
 import biblioteka.model.Biblioteka;
+import biblioteka.model.Bibliotekar;
 import biblioteka.model.EnumPol;
 import biblioteka.model.Zaposleni;
 import net.miginfocom.swing.MigLayout;
 
-public class IzmenaZaposlenogFrame extends JFrame {
+public class DodajZaposlenogFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField IdTextField;
 	private JLabel lblIme;
 	private JLabel lblPrezime;
 	private JTextField ImeTextField;
@@ -52,7 +53,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 	private JButton sacuvajButton;
 	private JButton odustaniButton;
 
-	public IzmenaZaposlenogFrame(Biblioteka biblioteka, Zaposleni zaposleni) {
+	public DodajZaposlenogFrame(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/e.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(510, 510);
@@ -63,21 +64,11 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow][][grow][]", "[grow][][][][][][][][][][][][grow][grow]"));
 		
-		JLabel lblID = new JLabel("ID:");
-		lblID.setFont(new Font("Courier New", Font.BOLD, 14));
-		contentPane.add(lblID, "cell 1 1,alignx right");
-		
-		IdTextField = new JTextField(Integer.toString(zaposleni.getId()));
-		IdTextField.setEditable(false);
-		IdTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
-		contentPane.add(IdTextField, "cell 2 1,alignx left");
-		IdTextField.setColumns(10);
-		
 		lblIme = new JLabel("Ime:");
 		lblIme.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblIme, "cell 1 3,alignx right");
 		
-		ImeTextField = new JTextField(zaposleni.getIme());
+		ImeTextField = new JTextField();
 		ImeTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		ImeTextField.setColumns(20);
 		contentPane.add(ImeTextField, "cell 2 3,alignx left");
@@ -86,7 +77,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		lblPrezime.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblPrezime, "cell 1 4,alignx right");
 		
-		PrezimeTextField = new JTextField(zaposleni.getPrezime());
+		PrezimeTextField = new JTextField();
 		PrezimeTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		PrezimeTextField.setColumns(20);
 		contentPane.add(PrezimeTextField, "cell 2 4,alignx left");
@@ -95,7 +86,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		lblJmbg.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblJmbg, "cell 1 5,alignx right");
 		
-		JMBGTextField = new JTextField(zaposleni.getJMBG());
+		JMBGTextField = new JTextField();
 		JMBGTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		JMBGTextField.setColumns(20);
 		contentPane.add(JMBGTextField, "cell 2 5,alignx left");
@@ -104,7 +95,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		lblAdresa.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblAdresa, "cell 1 6,alignx trailing");
 		
-		AdresaTextField = new JTextField(zaposleni.getAdresa());
+		AdresaTextField = new JTextField();
 		AdresaTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		AdresaTextField.setColumns(20);
 		contentPane.add(AdresaTextField, "cell 2 6,alignx left");
@@ -123,16 +114,11 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		ZenskoRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(ZenskoRadioButton, "cell 2 7");
 		
-		if(zaposleni.getPol() == EnumPol.Muško)
-			MuskoRadioButton.setSelected(true);
-		else if(zaposleni.getPol() == EnumPol.Žensko)
-			ZenskoRadioButton.setSelected(true);
-		
 		lblPlata = new JLabel("Plata:");
 		lblPlata.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblPlata, "cell 1 8,alignx right");
 		
-		PlataTextField = new JTextField(Double.toString(zaposleni.getPlata()));
+		PlataTextField = new JTextField();
 		PlataTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		PlataTextField.setColumns(20);
 		contentPane.add(PlataTextField, "cell 2 8,alignx left");
@@ -141,7 +127,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		lblKorisnickoIme.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblKorisnickoIme, "cell 1 9,alignx right");
 		
-		KorisnickoImeTextField = new JTextField(zaposleni.getKorisnickoIme());
+		KorisnickoImeTextField = new JTextField();
 		KorisnickoImeTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		KorisnickoImeTextField.setColumns(20);
 		contentPane.add(KorisnickoImeTextField, "cell 2 9,alignx left");
@@ -150,7 +136,7 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		lblLozinka.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblLozinka, "cell 1 10,alignx right");
 		
-		LozinkaPasswordField = new JPasswordField(zaposleni.getLozinka());
+		LozinkaPasswordField = new JPasswordField();
 		LozinkaPasswordField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		LozinkaPasswordField.setColumns(20);
 		contentPane.add(LozinkaPasswordField, "cell 2 10,alignx left");
@@ -161,11 +147,6 @@ public class IzmenaZaposlenogFrame extends JFrame {
 		
 		String[] uloge = {"Administrator", "Bibliotekar"};
 		UlogaComboBox = new JComboBox<Object>(uloge);
-		if(zaposleni.getUloga() == "A")
-			UlogaComboBox.setSelectedItem("Administrator");
-		else
-			UlogaComboBox.setSelectedItem("Bibliotekar");
-		UlogaComboBox.setEnabled(false);
         contentPane.add(UlogaComboBox, "cell 2 11,alignx left");
         
         buttonPane = new JPanel();
@@ -185,23 +166,29 @@ public class IzmenaZaposlenogFrame extends JFrame {
 				
 				if(sacuvaj == 0) {
 					EnumPol pol = null;
-					if(MuskoRadioButton.isSelected())
+					if(MuskoRadioButton.isSelected()) 
 						pol = EnumPol.Muško;
-					else if(ZenskoRadioButton.isSelected())
+					else if(ZenskoRadioButton.isSelected()) 
 						pol = EnumPol.Žensko;
+					
+					String izabrano = UlogaComboBox.getSelectedItem().toString();
+					String uloga = String.valueOf(izabrano.charAt(0));
 					
 					boolean izmenaOK = biblioteka.proveriZaposlenog(ImeTextField.getText(), PrezimeTextField.getText(), JMBGTextField.getText(), AdresaTextField.getText(),
 							Double.parseDouble(PlataTextField.getText()), KorisnickoImeTextField.getText(), new String(LozinkaPasswordField.getPassword()));
 					
+					Zaposleni zaposleni;
 					if(izmenaOK) {
-						zaposleni.setIme(ImeTextField.getText());
-						zaposleni.setPrezime(PrezimeTextField.getText());
-						zaposleni.setJMBG(JMBGTextField.getText());
-						zaposleni.setAdresa(AdresaTextField.getText());
-						zaposleni.setPol(pol);
-						zaposleni.setPlata(Double.parseDouble(PlataTextField.getText()));
-						zaposleni.setKorisnickoIme(KorisnickoImeTextField.getText());
-						zaposleni.setLozinka(new String(LozinkaPasswordField.getPassword()));
+						if(uloga.equals("A")) {
+							zaposleni = new Administrator(ImeTextField.getText(), PrezimeTextField.getText(), JMBGTextField.getText(), 
+									AdresaTextField.getText(), pol, Double.parseDouble(PlataTextField.getText()), KorisnickoImeTextField.getText(), 
+									new String(LozinkaPasswordField.getPassword()), false);
+						} else {
+							zaposleni = new Bibliotekar(ImeTextField.getText(), PrezimeTextField.getText(), JMBGTextField.getText(), 
+									AdresaTextField.getText(), pol, Double.parseDouble(PlataTextField.getText()), KorisnickoImeTextField.getText(), 
+									new String(LozinkaPasswordField.getPassword()), false);
+						}
+						biblioteka.getSviZaposleni().add(zaposleni);
 						biblioteka.upisiSveZaposlene();
 					}
 					else {

@@ -12,6 +12,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import biblioteka.gui.UplataDialog;
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Clan;
 import javax.swing.JButton;
@@ -19,6 +20,10 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
 
 public class PrikazClanaFrame extends JFrame {
 
@@ -33,6 +38,11 @@ public class PrikazClanaFrame extends JFrame {
 				continue;
 			else
 				sviNeobrisani.add(clan);
+			
+			if(clan.getDatumPoslednjeUplate().plusMonths(clan.getBrMeseciClanarine()).isBefore(LocalDate.now())) {
+				clan.setAktivan(false);
+				biblioteka.upisiSveClanove();
+			}		
 		}
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -78,6 +88,8 @@ public class PrikazClanaFrame extends JFrame {
 		scrollPane.setFont(new Font("Courier New", Font.PLAIN, 12));
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
+		JPanel buttonPane = new JPanel();
+		
 		JButton IzmenaButton = new JButton("Izmena izabranog člana");
 		IzmenaButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		IzmenaButton.addActionListener(new ActionListener() {
@@ -98,7 +110,64 @@ public class PrikazClanaFrame extends JFrame {
 				}
 			}
 		});
-		contentPane.add(IzmenaButton, BorderLayout.SOUTH);
+		buttonPane.add(IzmenaButton);
+		contentPane.add(buttonPane, BorderLayout.SOUTH);
+		
+		JButton BrisanjeButton = new JButton("Brisanje izabranog člana");
+		BrisanjeButton.setFont(new Font("Courier New", Font.PLAIN, 12));
+		BrisanjeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = tabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Izaberite člana iz tabele za brisanje.", "Greška", JOptionPane.WARNING_MESSAGE);
+				}else {
+					Clan izabraniClan = null;
+					int clanId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					for(Clan clan: sviNeobrisani) {
+						if(clan.getId() == clanId)
+							izabraniClan = clan;
+					}
+					String[] opcije = new String[2];
+					opcije[0] = "Da";
+					opcije[1] = "Ne";
+					
+					int obrisi = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete člana?", "Potvrda", 0, JOptionPane.INFORMATION_MESSAGE, null, opcije, null);
+					
+					if(obrisi == 0) {
+						izabraniClan.setObrisan(true);
+						biblioteka.upisiSveClanove();
+						JOptionPane.showMessageDialog(null, "Član uspešno obrisan.");
+					}
+				}
+			}
+		});
+		buttonPane.add(BrisanjeButton);
+		
+		Component rigidArea = Box.createRigidArea(new Dimension(40, 20));
+		buttonPane.add(rigidArea);
+		
+		JButton UplataButton = new JButton("Uplata članarine");
+		UplataButton.setFont(new Font("Courier New", Font.PLAIN, 12));
+		UplataButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = tabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Izaberite člana iz tabele za naplatu članarine.", "Greška", JOptionPane.WARNING_MESSAGE);
+				}else {
+					Clan izabraniClan = null;
+					int clanId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					for(Clan clan: sviNeobrisani) {
+						if(clan.getId() == clanId)
+							izabraniClan = clan;
+					}
+					UplataDialog uplata = new UplataDialog(biblioteka, izabraniClan);
+					uplata.setVisible(true);
+				}
+			}
+		});
+		buttonPane.add(UplataButton);
 		
 	}
 

@@ -75,6 +75,8 @@ public class PrikazZaposlenogFrame extends JFrame {
 		scrollPane.setFont(new Font("Courier New", Font.PLAIN, 12));
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
+JPanel buttonPane = new JPanel();
+		
 		JButton IzmenaButton = new JButton("Izmena izabranog zaposlenog");
 		IzmenaButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		IzmenaButton.addActionListener(new ActionListener() {
@@ -95,7 +97,39 @@ public class PrikazZaposlenogFrame extends JFrame {
 				}
 			}
 		});
-		contentPane.add(IzmenaButton, BorderLayout.SOUTH);
+		buttonPane.add(IzmenaButton);
+		contentPane.add(buttonPane, BorderLayout.SOUTH);
+		
+		JButton BrisanjeButton = new JButton("Brisanje izabranog zaposlenog");
+		BrisanjeButton.setFont(new Font("Courier New", Font.PLAIN, 12));
+		BrisanjeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = tabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Izaberite zaposlenog iz tabele za brisanje.", "Greška", JOptionPane.WARNING_MESSAGE);
+				}else {
+					Zaposleni izabraniZaposleni = null;
+					int zaposleniId = Integer.parseInt(tableModel.getValueAt(red, 0).toString());
+					for(Zaposleni zaposleni: sviNeobrisani) {
+						if(zaposleni.getId() == zaposleniId)
+							izabraniZaposleni = zaposleni;
+					}
+					String[] opcije = new String[2];
+					opcije[0] = "Da";
+					opcije[1] = "Ne";
+					
+					int obrisi = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete zaposlenog?", "Potvrda", 0, JOptionPane.INFORMATION_MESSAGE, null, opcije, null);
+					
+					if(obrisi == 0) {
+						izabraniZaposleni.setObrisan(true);
+						biblioteka.upisiSveZaposlene();
+						JOptionPane.showMessageDialog(null, "Zaposleni uspešno obrisan.");
+					}
+				}
+			}
+		});
+		buttonPane.add(BrisanjeButton);
 	}
 
 }
