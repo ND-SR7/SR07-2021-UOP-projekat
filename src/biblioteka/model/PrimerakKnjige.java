@@ -98,7 +98,7 @@ public class PrimerakKnjige {
 	/*toString()*/
     @Override
     public String toString() {
-    	return "Primerak knjige: " + this.knjiga.getNaslov();
+    	return "Primerak " + this.knjiga.getNaslov() + ", ID: " + Integer.toString(this.getId());
     }
 
 	/*GENERATOR JEDINSTVENIH ID-a*/

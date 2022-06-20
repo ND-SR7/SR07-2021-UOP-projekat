@@ -98,7 +98,7 @@ public class Clan extends Osoba {
 	/*toString()*/
     @Override
     public String toString() {
-    	return "Član: " + this.ime + " " + this.prezime;
+    	return "Član " + this.ime + " " + this.prezime;
     }
 
 	/*GENERATOR JEDINSTVENIH ID-a*/

@@ -1,4 +1,5 @@
 P,Programiranje i koncepti vezani za kompjuterske nauke,false
 D,Drame i originalna dela pozorišnih izvedbi,false
 F,Filozofija i biografije poznatih filozofa,false
+I,Istorijska dela i analiza,false
 K,Komedije i dela sa opuštenom tematikom,false

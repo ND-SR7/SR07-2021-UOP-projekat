@@ -119,6 +119,8 @@ public class PrikazIznajmljivanjaFrame extends JFrame {
 					
 					if(obrisi == 0) {
 						izabranoIznajmljivanje.setObrisano(true);
+						izabranoIznajmljivanje.getIznajmljenPrimerak().setIznajmljen(false);
+						biblioteka.upisiSvePrimerke();
 						biblioteka.upisiSveIznajmljivanje();
 						JOptionPane.showMessageDialog(null, "Iznajmljivanje uspešno obrisano.");
 					}

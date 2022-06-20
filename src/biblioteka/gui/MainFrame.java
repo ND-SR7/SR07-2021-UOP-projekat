@@ -6,7 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import biblioteka.gui.add.DodajClanaFrame;
+import biblioteka.gui.add.DodajIznajmljivanjeFrame;
 import biblioteka.gui.add.DodajKnjiguFrame;
+import biblioteka.gui.add.DodajPrimerakFrame;
+import biblioteka.gui.add.DodajZanrFrame;
 import biblioteka.gui.add.DodajZaposlenogFrame;
 import biblioteka.gui.show.PrikazClanaFrame;
 import biblioteka.gui.show.PrikazIznajmljivanjaFrame;
@@ -209,10 +212,24 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem PrimerciAddMenuItem = new JMenuItem("Primerka knjige");
 		PrimerciAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		PrimerciAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodajPrimerakFrame dodaj = new DodajPrimerakFrame(biblioteka);
+				dodaj.setVisible(true);
+			}
+		});
 		DodavanjeMenu.add(PrimerciAddMenuItem);
 		
 		JMenuItem ZanroviAddMenuItem = new JMenuItem("Žanra");
 		ZanroviAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		ZanroviAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodajZanrFrame dodaj = new DodajZanrFrame(biblioteka);
+				dodaj.setVisible(true);
+			}
+		});
 		DodavanjeMenu.add(ZanroviAddMenuItem);
 		
 		JSeparator separator_1_1 = new JSeparator();
@@ -220,6 +237,13 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem IznajmljivanjaAddMenuItem = new JMenuItem("Iznajmljivanja");
 		IznajmljivanjaAddMenuItem.setFont(new Font("Courier New", Font.PLAIN, 12));
+		IznajmljivanjaAddMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodajIznajmljivanjeFrame dodaj = new DodajIznajmljivanjeFrame(biblioteka);
+				dodaj.setVisible(true);
+			}
+		});
 		DodavanjeMenu.add(IznajmljivanjaAddMenuItem);
 		
 		contentPane = new JPanel();

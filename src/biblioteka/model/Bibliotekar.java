@@ -23,6 +23,6 @@ public class Bibliotekar extends Zaposleni {
     /*toString()*/
     @Override
     public String toString() {
-    	return "Bibliotekar: " + this.korisnickoIme;
+    	return "Bibliotekar " + this.korisnickoIme;
     }
 }

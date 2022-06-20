@@ -1,11 +1,20 @@
-package biblioteka.gui.edit;
+package biblioteka.gui.add;
 
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import biblioteka.model.Biblioteka;
@@ -14,27 +23,16 @@ import biblioteka.model.EnumTipPoveza;
 import biblioteka.model.Knjiga;
 import biblioteka.model.PrimerakKnjige;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-
-public class IzmenaPrimerkaFrame extends JFrame {
+public class DodajPrimerakFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField IdTextField;
 	private JTextField BrStranaTextField;
 	private JTextField GodinaTextField;
 	private final ButtonGroup IznajmljenButtonGroup = new ButtonGroup();
 
-	public IzmenaPrimerkaFrame(Biblioteka biblioteka, PrimerakKnjige primerak) {
+	public DodajPrimerakFrame(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/e.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(510, 510);
@@ -45,21 +43,11 @@ public class IzmenaPrimerkaFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[grow][][grow]", "[grow][][][][][][][][grow]"));
 		
-		JLabel lblNewLabel = new JLabel("ID:");
-		lblNewLabel.setFont(new Font("Courier New", Font.BOLD, 14));
-		contentPane.add(lblNewLabel, "cell 1 1,alignx trailing");
-		
-		IdTextField = new JTextField(Integer.toString(primerak.getId()));
-		IdTextField.setEditable(false);
-		IdTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
-		contentPane.add(IdTextField, "cell 2 1,alignx left");
-		IdTextField.setColumns(10);
-		
 		JLabel lblBrojStrana = new JLabel("Broj strana:");
 		lblBrojStrana.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblBrojStrana, "cell 1 2,alignx trailing");
 		
-		BrStranaTextField = new JTextField(Integer.toString(primerak.getBrojStrana()));
+		BrStranaTextField = new JTextField();
 		BrStranaTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(BrStranaTextField, "cell 2 2,alignx left");
 		BrStranaTextField.setColumns(10);
@@ -70,14 +58,13 @@ public class IzmenaPrimerkaFrame extends JFrame {
 		
 		JComboBox<Object> PovezComboBox = new JComboBox<Object>(EnumTipPoveza.values());
 		PovezComboBox.setFont(new Font("Courier New", Font.PLAIN, 12));
-		PovezComboBox.setSelectedItem(primerak.getTipPoveza());
 		contentPane.add(PovezComboBox, "cell 2 3,alignx left");
 		
 		JLabel lblGodinatampanja = new JLabel("Godina štampanja:");
 		lblGodinatampanja.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblGodinatampanja, "cell 1 4,alignx trailing");
 		
-		GodinaTextField = new JTextField(Integer.toString(primerak.getGodinaStampanja()));
+		GodinaTextField = new JTextField();
 		GodinaTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		GodinaTextField.setColumns(10);
 		contentPane.add(GodinaTextField, "cell 2 4,alignx left");
@@ -87,32 +74,23 @@ public class IzmenaPrimerkaFrame extends JFrame {
 		contentPane.add(lblIznajmljen, "cell 1 5,alignx right");
 		
 		JRadioButton IznajmljenRadioButton = new JRadioButton("Da");
-		IznajmljenRadioButton.setEnabled(false);
 		IznajmljenButtonGroup.add(IznajmljenRadioButton);
 		IznajmljenRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(IznajmljenRadioButton, "flowx,cell 2 5");
 		
         JRadioButton NeiznajmljenRadioButton = new JRadioButton("Ne");
-        NeiznajmljenRadioButton.setEnabled(false);
         IznajmljenButtonGroup.add(NeiznajmljenRadioButton);
         NeiznajmljenRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
         contentPane.add(NeiznajmljenRadioButton, "cell 2 5");
-        
-        if(primerak.isIznajmljen())
-        	IznajmljenRadioButton.setSelected(true);
-        else
-        	NeiznajmljenRadioButton.setSelected(true);
 		
 		JLabel lblKnjiga = new JLabel("Knjiga:");
 		lblKnjiga.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblKnjiga, "cell 1 6,alignx trailing");
 		
 		JComboBox<Object> KnjigaComboBox = new JComboBox<Object>();
-		KnjigaComboBox.setEnabled(false);
 		KnjigaComboBox.setFont(new Font("Courier New", Font.PLAIN, 12));
 		for(Knjiga knjiga: biblioteka.getSveKnjige())
 			KnjigaComboBox.addItem(knjiga);
-		KnjigaComboBox.setSelectedItem(primerak.getKnjiga());
 		contentPane.add(KnjigaComboBox, "cell 2 6,alignx left");
 		
 		JLabel lblJeziktampanja = new JLabel("Jezik štampanja:");
@@ -142,10 +120,16 @@ public class IzmenaPrimerkaFrame extends JFrame {
 					boolean izmenaOK = biblioteka.proveriPrimerak(Integer.parseInt(BrStranaTextField.getText()), Integer.parseInt(GodinaTextField.getText()));
 					
 					if(izmenaOK) {
-						primerak.setBrojStrana(Integer.parseInt(BrStranaTextField.getText()));
-						primerak.setTipPoveza((EnumTipPoveza) PovezComboBox.getSelectedItem());
-						primerak.setGodinaStampanja(Integer.parseInt(GodinaTextField.getText()));
-						primerak.setJezikStampanja((EnumJezik) JezikComboBox.getSelectedItem());
+						boolean iznajmljen = false;
+						if(IznajmljenRadioButton.isSelected())
+							iznajmljen = true;
+						
+						Knjiga knjiga = (Knjiga) KnjigaComboBox.getSelectedItem();
+						
+						PrimerakKnjige primerak = new PrimerakKnjige(Integer.parseInt(BrStranaTextField.getText()), (EnumTipPoveza) PovezComboBox.getSelectedItem(), 
+								Integer.parseInt(GodinaTextField.getText()), iznajmljen, knjiga, (EnumJezik) JezikComboBox.getSelectedItem(), false);
+						
+						biblioteka.getSviPrimerciKnjiga().add(primerak);
 						biblioteka.upisiSvePrimerke();
 					}
 					else {

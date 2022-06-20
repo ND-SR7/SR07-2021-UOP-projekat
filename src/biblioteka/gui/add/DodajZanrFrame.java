@@ -1,32 +1,30 @@
-package biblioteka.gui.edit;
+package biblioteka.gui.add;
 
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import biblioteka.model.Biblioteka;
 import biblioteka.model.Zanr;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
-import java.awt.Font;
-import javax.swing.JTextField;
-
-public class IzmenaZanraFrame extends JFrame {
+public class DodajZanrFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField OznakaTextField;
 	private JTextField OpisTextField;
-	
-	public IzmenaZanraFrame(Biblioteka biblioteka, Zanr zanr) {
+
+	public DodajZanrFrame(Biblioteka biblioteka) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/e.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(510, 510);
@@ -41,7 +39,7 @@ public class IzmenaZanraFrame extends JFrame {
 		lblOznaka.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblOznaka, "cell 1 1,alignx trailing");
 		
-		OznakaTextField = new JTextField(zanr.getOznaka());
+		OznakaTextField = new JTextField();
 		OznakaTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(OznakaTextField, "cell 2 1,alignx left");
 		OznakaTextField.setColumns(10);
@@ -50,7 +48,7 @@ public class IzmenaZanraFrame extends JFrame {
 		lblOpis.setFont(new Font("Courier New", Font.BOLD, 14));
 		contentPane.add(lblOpis, "cell 1 2,alignx trailing");
 		
-		OpisTextField = new JTextField(zanr.getOpis());
+		OpisTextField = new JTextField();
 		OpisTextField.setFont(new Font("Courier New", Font.PLAIN, 12));
 		OpisTextField.setColumns(50);
 		contentPane.add(OpisTextField, "cell 2 2,alignx left");
@@ -74,8 +72,8 @@ public class IzmenaZanraFrame extends JFrame {
 					boolean izmenaOK = biblioteka.proveriZanr(OznakaTextField.getText(), OpisTextField.getText());
 					
 					if(izmenaOK) {
-						zanr.setOznaka(OznakaTextField.getText());
-						zanr.setOpis(OpisTextField.getText());
+						Zanr zanr = new Zanr(OznakaTextField.getText(), OpisTextField.getText(), false);
+						biblioteka.getSviZanrovi().put(OznakaTextField.getText(), zanr);
 						biblioteka.upisiSveZanrove();
 					}
 					else {

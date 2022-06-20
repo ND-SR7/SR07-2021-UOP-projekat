@@ -23,7 +23,7 @@ public class Administrator extends Zaposleni {
     /*toString()*/
     @Override
     public String toString() {
-    	return "Administrator: " + this.korisnickoIme;
+    	return "Administrator " + this.korisnickoIme;
     }
 
     /**CRUD**/

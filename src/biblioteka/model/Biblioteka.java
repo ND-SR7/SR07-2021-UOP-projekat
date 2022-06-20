@@ -398,7 +398,7 @@ public class Biblioteka {
 			for(IznajmljivanjeKnjige iznajmljivanje: sveIznajmljivanje) 
 				pisac.write(iznajmljivanje.getDatumIznajmljivanja().toString() + "," + iznajmljivanje.getDatumVracanja().toString() + "," + 
 						Integer.toString(iznajmljivanje.getIznajmljenPrimerak().getId()) + "," + Integer.toString(iznajmljivanje.getClan().getId()) + "," + 
-						Integer.toString(iznajmljivanje.getZaposleni().getId()) + "," + Boolean.toString(iznajmljivanje.isObrisano()));
+						Integer.toString(iznajmljivanje.getZaposleni().getId()) + "," + Boolean.toString(iznajmljivanje.isObrisano()) + "\n");
 				
 			pisac.close();
 		} catch (IOException e) {
@@ -453,7 +453,7 @@ public class Biblioteka {
 	    Matcher jmbgMatcher = jmbgPattern.matcher(JMBG);
 	    boolean jmbgOK = jmbgMatcher.find();
 	    
-	    Pattern adresaPattern = Pattern.compile("[\\w,\\s]", Pattern.CASE_INSENSITIVE);
+	    Pattern adresaPattern = Pattern.compile("[\\w\\s]", Pattern.CASE_INSENSITIVE);
 	    Matcher adresaMatcher = adresaPattern.matcher(adresa);
 	    boolean adresaOK = adresaMatcher.find();
 	    
@@ -518,12 +518,60 @@ public class Biblioteka {
 	    Matcher godinaMatcher = godinaPattern.matcher(godinaObjavljivanja);
 	    boolean godinaOK = godinaMatcher.find();
 	    
-	    Pattern opisPattern = Pattern.compile("[\\w\\s0-9.,?!-/]", Pattern.CASE_INSENSITIVE);
+	    Pattern opisPattern = Pattern.compile("[\\w\\s0-9.?!-/]", Pattern.CASE_INSENSITIVE);
 	    Matcher opisMatcher = opisPattern.matcher(opis);
 	    boolean opisOK = opisMatcher.find();
 	    
 	    if(naslovOK && originalniNaslovOK && pisacOK && godinaOK && opisOK)
 	    	return true;
+		
+		return false;
+	}
+	
+	//IZMENA PRIMERKA
+	public boolean proveriPrimerak(int brojStrana, int godinaStampanja) {
+		boolean brStranaOK = false;
+		if(brojStrana > 0)
+			brStranaOK = true;
+		
+		boolean godinaOK = false;
+		if(godinaStampanja > 1400)
+			godinaOK = true;
+		
+		if(brStranaOK && godinaOK)
+			return true;
+		
+		return false;
+	}
+	
+	//IZMENA ŽANRA
+	public boolean proveriZanr(String oznaka, String opis) {
+		Pattern oznakaPattern = Pattern.compile("[\\w0-9-]", Pattern.CASE_INSENSITIVE);
+	    Matcher oznakaMatcher = oznakaPattern.matcher(oznaka);
+	    boolean oznakaOK = oznakaMatcher.find();
+	    
+	    Pattern opisPattern = Pattern.compile("[\\w0-9.?!-/]");
+	    Matcher opisMatcher = opisPattern.matcher(opis);
+	    boolean opisOK = opisMatcher.find();
+	    
+	    if(oznakaOK && opisOK)
+	    	return true;
+	    
+	    return false;
+	}
+	
+	//IZMENA IZNAJMLJIVANJA
+	public boolean proveriIznajmljivanje(LocalDate datumIznajmljivanja, LocalDate datumVracanja) {
+		boolean datumIznajmljivanjaOK = true;
+		if(datumIznajmljivanja.isAfter(LocalDate.now()))
+			datumIznajmljivanjaOK = false;
+		
+		boolean datumVracanjaOK = true;
+		if(datumVracanja.isBefore(LocalDate.now()))
+			datumVracanjaOK = false;
+		
+		if(datumIznajmljivanjaOK && datumVracanjaOK)
+			return true;
 		
 		return false;
 	}
