@@ -109,6 +109,7 @@ public class DodajClanaFrame extends JFrame {
 		
 		MuskoRadioButton = new JRadioButton("Muško");
 		polButtonGroup.add(MuskoRadioButton);
+		MuskoRadioButton.setSelected(true);
 		MuskoRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(MuskoRadioButton, "flowx,cell 2 7");
 		
@@ -141,6 +142,7 @@ public class DodajClanaFrame extends JFrame {
         
         rdbtnAktivan = new JRadioButton("Aktivan");
         aktivanButtonGroup.add(rdbtnAktivan);
+        rdbtnAktivan.setSelected(true);
         rdbtnAktivan.setFont(new Font("Courier New", Font.PLAIN, 12));
         contentPane.add(rdbtnAktivan, "flowx,cell 2 10");
         

@@ -80,6 +80,7 @@ public class DodajPrimerakFrame extends JFrame {
 		
         JRadioButton NeiznajmljenRadioButton = new JRadioButton("Ne");
         IznajmljenButtonGroup.add(NeiznajmljenRadioButton);
+        NeiznajmljenRadioButton.setSelected(true);
         NeiznajmljenRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
         contentPane.add(NeiznajmljenRadioButton, "cell 2 5");
 		

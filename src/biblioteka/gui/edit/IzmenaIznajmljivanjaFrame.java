@@ -68,11 +68,11 @@ public class IzmenaIznajmljivanjaFrame extends JFrame {
 		DatumVracanjaTextField.setColumns(15);
 		contentPane.add(DatumVracanjaTextField, "flowx,cell 2 2,alignx left");
 		
-		lblFormat1 = new JLabel("Format: YYYY-mm-dd");
+		lblFormat1 = new JLabel("YYYY-mm-dd");
 		lblFormat1.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(lblFormat1, "cell 2 1");
 		
-		lblFormat2 = new JLabel("Format: YYYY-mm-dd");
+		lblFormat2 = new JLabel("YYYY-mm-dd");
 		lblFormat2.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(lblFormat2, "cell 2 2");
 		

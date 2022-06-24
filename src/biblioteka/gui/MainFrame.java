@@ -256,7 +256,7 @@ public class MainFrame extends JFrame {
 		InfoLabel.setFont(new Font("Courier New", Font.PLAIN, 36));
 		contentPane.add(InfoLabel, BorderLayout.CENTER);
 		
-		JLabel VersionLabel = new JLabel("v1.0");
+		JLabel VersionLabel = new JLabel("v1.1");
 		VersionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		VersionLabel.setVerticalAlignment(SwingConstants.TOP);
 		VersionLabel.setFont(new Font("Courier New", Font.PLAIN, 36));

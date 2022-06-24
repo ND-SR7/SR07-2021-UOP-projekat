@@ -107,6 +107,7 @@ public class DodajZaposlenogFrame extends JFrame {
 		
 		MuskoRadioButton = new JRadioButton("Muško");
 		polButtonGroup.add(MuskoRadioButton);
+		MuskoRadioButton.setSelected(true);
 		MuskoRadioButton.setFont(new Font("Courier New", Font.PLAIN, 12));
 		contentPane.add(MuskoRadioButton, "flowx,cell 2 7");
 		

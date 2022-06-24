@@ -567,7 +567,7 @@ public class Biblioteka {
 			datumIznajmljivanjaOK = false;
 		
 		boolean datumVracanjaOK = true;
-		if(datumVracanja.isBefore(LocalDate.now()))
+		if(datumVracanja.isBefore(datumIznajmljivanja))
 			datumVracanjaOK = false;
 		
 		if(datumIznajmljivanjaOK && datumVracanjaOK)
